@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Academo</string>
+    <string name="app_title">ACADEMO</string>
+    <string name="login">User</string>
+    <string name="login_hint">User Name</string>
+    <string name="password">Password</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Enter</string>
+    <string name="register_button">Register</string>
+
+</resources>
