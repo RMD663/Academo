@@ -14,7 +14,7 @@
   <RelativeLayout
       android:id="@+id/register_text"
       android:layout_width="match_parent"
-      android:layout_height="200dp">
+      android:layout_height="150dp">
   <TextView
       android:id="@+id/register"
       android:layout_width="wrap_content"
@@ -23,15 +23,89 @@
       android:layout_marginTop="16dp"
       android:text="@string/register_button"
       android:textSize="42sp"
+      android:fontFamily="monospace"
       android:layout_centerInParent="true"
       />
   </RelativeLayout>
   <RelativeLayout
+      android:id="@+id/profile_picture_register"
       android:layout_below="@id/register_text"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/register_profile_image"
+        android:background="@mipmap/ic_launcher"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        />
+    <TextView
+        android:layout_below="@id/register_profile_image"
+        android:id="@+id/register_import_picture_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/register_profile_picture"
+        android:textSize="16sp"
+        android:layout_centerInParent="true"
+        android:textColor="#00F"
+        android:clickable="true"
+        />
   </RelativeLayout>
+  <RelativeLayout
+      android:id="@+id/user_name_register"
+      android:layout_below="@id/profile_picture_register"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/register_user_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:fontFamily="monospace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_user_name"
+        android:gravity="center"
+        android:textSize="18sp"
+        />
+    <EditText
+        android:id="@+id/register_user_name_input"
+        android:layout_below="@id/register_user_name"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="name"
+        />
+  </RelativeLayout>
+  <RelativeLayout
+      android:layout_below="@id/user_name_register"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/register_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:fontFamily="monospace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_password"
+        android:gravity="center"
+        android:textSize="18sp"
+        />
+    <EditText
+        android:id="@+id/register_password_input"
+        android:layout_below="@id/register_password"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="name"
+        />
+  </RelativeLayout>
+
 
 </RelativeLayout>
   </ScrollView>

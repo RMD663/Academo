@@ -7,5 +7,7 @@
     <string name="password_hint">Password</string>
     <string name="login_button">Enter</string>
     <string name="register_button">Register</string>
-
+    <string name="register_profile_picture">Import a profile picture</string>
+    <string name="register_user_name">User Name</string>
+    <string name="register_password">Password</string>
 </resources>
