@@ -104,6 +104,19 @@
         android:layout_height="wrap_content"
         android:autofillHints="name"
         />
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/register_password_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/square_button_selector"
+        android:fontFamily="monospace"
+        android:text="@string/register_button"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
   </RelativeLayout>
 
 
