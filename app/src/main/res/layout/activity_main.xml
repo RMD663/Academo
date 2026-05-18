@@ -14,7 +14,7 @@
         <RelativeLayout
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="200dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,6 +107,20 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/register_import_picture_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="24dp"
+                android:layout_below="@id/register_button"
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif"
+                android:text="@string/forgot_password"
+                android:textSize="16sp"
+                android:textColor="#0000FF"
+                android:focusable="true"
+                android:clickable="true" />
         </RelativeLayout>
 
     </RelativeLayout>

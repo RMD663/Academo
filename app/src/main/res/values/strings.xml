@@ -10,4 +10,6 @@
     <string name="register_profile_picture">Import a profile picture</string>
     <string name="register_user_name">User Name</string>
     <string name="register_password">Password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="register_title">REGISTER</string>
 </resources>
