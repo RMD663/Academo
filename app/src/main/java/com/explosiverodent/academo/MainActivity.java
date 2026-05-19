@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         User user = null;
 
         user = userDatabase.validateLogin(_user_name, _password);
-        System.out.println(user);
 
 
         if(user != null){

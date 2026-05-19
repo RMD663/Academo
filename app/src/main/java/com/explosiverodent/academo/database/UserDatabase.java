@@ -20,6 +20,7 @@ public class UserDatabase extends SQLiteOpenHelper {
     private static final String COL_NAME = "user_name";
     private static final String COL_POINTS = "points";
     private static final String COL_XP = "xp";
+
     private static final String COL_LEVEL = "level";
     private static final String COL_PROFILE_PIC_URI = "profile_picture_uri";
 

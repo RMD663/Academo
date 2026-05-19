@@ -3,14 +3,12 @@ package com.explosiverodent.academo.model;
 import android.net.Uri;
 
 public class User {
-
     private int _id = 0;
     private String user_name = "";
     private int points = 0;
     private float xp = 0.f;
     private int level = 1;
     private String profile_picture_uri;
-
     public User(int _id, String user_name, int points, float xp, int level) {
         this._id = _id;
         this.user_name = user_name;

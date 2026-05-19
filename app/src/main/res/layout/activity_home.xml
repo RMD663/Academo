@@ -80,6 +80,20 @@
                 android:progressTint="#468232"/>
         </RelativeLayout>
 
+        <ScrollView
+            android:id="@+id/scroll_levels"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#1e1d39">
+
+            <ListView
+                android:id="@+id/level_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+        </ScrollView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
