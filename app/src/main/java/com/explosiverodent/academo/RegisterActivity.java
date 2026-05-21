@@ -57,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
                 uri -> {
             if (uri != null){
                 select_image = uri;
+                profile_image.setImageAlpha(255);
                 profile_image.setImageURI(uri);
             }
         });
