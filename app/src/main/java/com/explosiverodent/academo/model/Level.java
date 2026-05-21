@@ -1,15 +1,22 @@
 package com.explosiverodent.academo.model;
 
 public class Level {
+    private int position;
+    private String title;
+    private String difficulty;
+    private String jsonFileName;
 
-    private String name;
-    private int difficulty;
+    public Level(int position, String title, String difficulty, String jsonFileName) {
+        this.position = position;
+        this.title = title;
+        this.difficulty = difficulty;
+    }
 
-    private int xp_value;
+    public int getPosition() { return position; }
+    public String getTitle() { return title; }
+    public String getDifficulty() { return difficulty; }
 
-    private String path_to_level;
-
-
-
-
+    public String getJsonFileName() {
+        return jsonFileName;
+    }
 }

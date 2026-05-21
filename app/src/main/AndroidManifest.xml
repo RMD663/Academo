@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Academo">
         <activity
+            android:name=".GameActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
