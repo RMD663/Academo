@@ -114,7 +114,7 @@ public class UserDatabase extends SQLiteOpenHelper {
                     cursor.getInt(cursor.getColumnIndexOrThrow(COL_POINTS)),
                     cursor.getFloat(cursor.getColumnIndexOrThrow(COL_XP)),
                     cursor.getInt(cursor.getColumnIndexOrThrow(COL_LEVEL))
-                    );
+            );
             String profile_picture_uri = cursor.getString(cursor.getColumnIndexOrThrow(COL_PROFILE_PIC_URI));
 
             if(profile_picture_uri != null && !profile_picture_uri.isEmpty()){
@@ -126,4 +126,69 @@ public class UserDatabase extends SQLiteOpenHelper {
         return userLogin;
     }
 
+    public boolean updateUserProgress(int userId, int newPoints, float newXp, int newLevel) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COL_POINTS, newPoints);
+        values.put(COL_XP, newXp);
+        values.put(COL_LEVEL, newLevel);
+
+        int rowsAffected = database.update(TABLE_USERS, values, COL_ID + " = ?", new String[]{String.valueOf(userId)});
+        return rowsAffected > 0;
+    }
+
+    public User getUserById(int userId) {
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_USERS + " WHERE " + COL_ID + " = ?";
+        Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(userId)});
+
+        User user = null;
+        if (cursor.moveToFirst()) {
+            user = new User(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COL_NAME)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(COL_POINTS)),
+                    cursor.getFloat(cursor.getColumnIndexOrThrow(COL_XP)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(COL_LEVEL))
+            );
+            String pic = cursor.getString(cursor.getColumnIndexOrThrow(COL_PROFILE_PIC_URI));
+            if (pic != null) user.setProfilePicture(pic);
+        }
+        cursor.close();
+        return user;
+    }
+
+
+    public int getUserIdByUsername(String username) {
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT " + COL_ID + " FROM " + TABLE_USERS + " WHERE " + COL_NAME + " = ?";
+        Cursor cursor = database.rawQuery(query, new String[]{username});
+
+        int userId = -1;
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID));
+        }
+        cursor.close();
+        return userId;
+    }
+
+
+    public boolean updateUserPassword(int userId, String newPassword) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_PASSWORD, newPassword);
+
+        int rowsAffected = database.update(TABLE_AUTH, values, COL_USER_ID_FK + " = ?", new String[]{String.valueOf(userId)});
+        return rowsAffected > 0;
+    }
+
+    public boolean updateUserProfilePicture(int userId, String imageUri) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_PROFILE_PIC_URI, imageUri);
+
+        int rowsAffected = database.update(TABLE_USERS, values, COL_ID + " = ?", new String[]{String.valueOf(userId)});
+        return rowsAffected > 0;
+    }
 }

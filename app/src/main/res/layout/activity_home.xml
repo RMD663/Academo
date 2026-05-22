@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://tools.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".HomeActivity">
 
+    <!-- CABEÇALHO DE PERFIL -->
     <RelativeLayout
         android:id="@+id/profile_bar"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true">
 
         <View
             android:id="@+id/background_line"
@@ -38,7 +40,9 @@
             android:layout_height="100dp"
             android:layout_centerInParent="true"
             android:background="#ebede9"
-            android:src="@drawable/profile_picture" />
+            android:src="@drawable/profile_picture"
+            android:clickable="true"
+            android:focusable="true"/>
 
         <TextView
             android:id="@+id/level_text"
@@ -65,13 +69,21 @@
             android:progress="45"
             tools:progress="45"
             android:progressTint="#468232"/>
-
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/level_select_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_below="@id/profile_bar"
+        android:layout_above="@id/bottom_navigation" />
 
-</LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>
