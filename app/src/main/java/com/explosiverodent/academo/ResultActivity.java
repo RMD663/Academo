@@ -44,7 +44,7 @@ public class ResultActivity extends AppCompatActivity {
 
         btnBackHome.setOnClickListener(v -> {
             Intent intent = new Intent(ResultActivity.this, HomeActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
         });
@@ -56,7 +56,7 @@ public class ResultActivity extends AppCompatActivity {
         int wrongs = getIntent().getIntExtra("WRONG_COUNT", 0);
 
         int pointsGained = corrects * 10;
-        float xpGained = corrects * 15.0f;
+        float xpGained = corrects * 12.0f;
 
         txtPointsEarned.setText("+" + pointsGained + " PTS");
         txtXpEarned.setText("+" + xpGained + " XP");

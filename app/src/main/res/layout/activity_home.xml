@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <!-- CABEÇALHO DE PERFIL -->
     <RelativeLayout
         android:id="@+id/profile_bar"
         android:layout_width="match_parent"

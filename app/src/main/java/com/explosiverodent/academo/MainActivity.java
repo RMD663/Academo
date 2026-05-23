@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button enter;
     Button register;
-    TextView forgotPassword; // Adicionado para gerenciar o clique do "Esqueci a senha"
+    TextView forgotPassword;
 
     EditText user_name_text;
     EditText password_text;

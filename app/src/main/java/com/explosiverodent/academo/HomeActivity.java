@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -19,9 +18,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.explosiverodent.academo.model.Level;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.explosiverodent.academo.adapter.LevelAdapter;
-import com.explosiverodent.academo.model.Level;
+import com.explosiverodent.academo.database.UserDatabase;
+import com.explosiverodent.academo.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,21 +35,18 @@ public class HomeActivity extends AppCompatActivity {
     private ProgressBar levelProgress;
     private BottomNavigationView bottomNavigationView;
 
+    private UserDatabase userDatabase;
     private int userId = -1;
     private String currentPicUriString = null;
     private String name = null;
 
-    // CORREÇÃO APLICADA AQUI: O launcher agora atualiza a variável global e o componente visual
     private final ActivityResultLauncher<Intent> editProfileLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     String newPicUri = result.getData().getStringExtra("NEW_PICTURE");
                     if (newPicUri != null && !newPicUri.isEmpty()) {
-                        // 1. Atualiza a referência local para os próximos cliques de edição
                         currentPicUriString = newPicUri;
-
-                        // 2. Reseta o cache do ImageView e renderiza a nova imagem segura
                         profilePicture.setImageURI(null);
                         profilePicture.setImageURI(Uri.parse(newPicUri));
                     }
@@ -62,6 +60,8 @@ public class HomeActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
+
+        userDatabase = new UserDatabase(this);
 
         ViewCompat.setOnApplyWindowInsetsListener(
                 findViewById(R.id.main),
@@ -79,30 +79,18 @@ public class HomeActivity extends AppCompatActivity {
         setupBottomNavigation();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserData();
+    }
+
     private void initViews() {
         profilePicture = findViewById(R.id.profile_picture);
         userNameText = findViewById(R.id.user_name_text);
         levelText = findViewById(R.id.level_text);
         levelProgress = findViewById(R.id.level_progress);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        name = getIntent().getStringExtra("USER_NAME");
-        int level = getIntent().getIntExtra("USER_LEVEL", 1);
-        float xp = getIntent().getFloatExtra("USER_XP", 0.0f);
-        currentPicUriString = getIntent().getStringExtra("USER_PICTURE");
-
-        if (name != null) userNameText.setText(name);
-        levelText.setText("LV " + level);
-        levelProgress.setProgress((int) xp);
-
-        if (currentPicUriString != null && !currentPicUriString.isEmpty()) {
-            try {
-                profilePicture.setImageURI(null);
-                profilePicture.setImageURI(Uri.parse(currentPicUriString));
-            } catch (SecurityException e) {
-                e.printStackTrace();
-            }
-        }
 
         profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,10 +105,37 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void loadUserData() {
+        if (userId != -1) {
+            User user = userDatabase.getUserById(userId);
+            if (user != null) {
+                name = user.getUserName();
+                int level = user.getLevel();
+                float xp = user.getXp();
+                currentPicUriString = user.getProfilePicture();
+
+                if (name != null) userNameText.setText(name);
+                levelText.setText("LV " + level);
+
+                int xpRequired = level * 100;
+                levelProgress.setMax(xpRequired);
+                levelProgress.setProgress((int) xp);
+
+                if (currentPicUriString != null && !currentPicUriString.isEmpty()) {
+                    try {
+                        profilePicture.setImageURI(null);
+                        profilePicture.setImageURI(Uri.parse(currentPicUriString));
+                    } catch (SecurityException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
     private void setupBottomNavigation() {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-
             if (itemId == R.id.nav_home) {
                 return true;
             } else if (itemId == R.id.nav_settings) {
