@@ -74,23 +74,24 @@ public class HomeActivity extends AppCompatActivity {
 
         userId = getIntent().getIntExtra("USER_ID", -1);
 
-        initViews();
-        setupRecyclerView();
-        setupBottomNavigation();
-    }
-
-    private void initViews() {
-        profilePicture = findViewById(R.id.profile_picture);
-        userNameText = findViewById(R.id.user_name_text);
-        levelText = findViewById(R.id.level_text);
-        levelProgress = findViewById(R.id.level_progress);
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         name = getIntent().getStringExtra("USER_NAME");
         int level = getIntent().getIntExtra("USER_LEVEL", 1);
         float xp = getIntent().getFloatExtra("USER_XP", 0.0f);
         currentPicUriString = getIntent().getStringExtra("USER_PICTURE");
 
+        initViews(level, xp);
+        setupRecyclerView();
+        setupBottomNavigation();
+    }
+
+    private void initViews(int level, float xp) {
+        profilePicture = findViewById(R.id.profile_picture);
+        userNameText = findViewById(R.id.user_name_text);
+        levelText = findViewById(R.id.level_text);
+        levelProgress = findViewById(R.id.level_progress);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        
         if (name != null) userNameText.setText(name);
         levelText.setText("LV " + level);
         levelProgress.setProgress((int) xp);
