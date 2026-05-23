@@ -114,7 +114,7 @@
             android:layout_gravity="center_horizontal"
             android:text="🚀 LEVEL UP!"
             android:textColor="#FFD700"
-            android:textSize="22sp"
+            android:textSize="23sp"
             android:textStyle="bold"
             android:visibility="gone"
             android:layout_marginBottom="32dp"
