@@ -58,7 +58,6 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.LevelViewHol
         holder.textTitle.setText(currentLevel.getTitle());
         holder.textDifficulty.setText("Dificuldade: " + currentLevel.getDifficulty());
 
-        // Configura o evento de clique no Card
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) {
                 clickListener.onLevelClick(currentLevel);

@@ -9,7 +9,6 @@
     android:background="?android:attr/windowBackground"
     tools:context=".HomeActivity">
 
-    <!-- CABEÇALHO DE PERFIL -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/profile_bar"
         android:layout_width="match_parent"

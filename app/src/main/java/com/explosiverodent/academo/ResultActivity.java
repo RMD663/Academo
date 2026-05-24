@@ -71,7 +71,7 @@ public class ResultActivity extends AppCompatActivity {
         int wrongs = getIntent().getIntExtra("WRONG_COUNT", 0);
 
         int pointsGained = corrects * 10;
-        float xpGained = corrects * 15.0f;
+        float xpGained = corrects * 12.0f;
 
         txtPointsEarned.setText("+" + pointsGained + " PTS");
         txtXpEarned.setText("+" + xpGained + " XP");
