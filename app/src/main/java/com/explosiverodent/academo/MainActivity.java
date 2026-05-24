@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     TextInputLayout layoutUser;
     TextInputLayout layoutPass;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
