@@ -96,13 +96,12 @@ public class ResultActivity extends AppCompatActivity {
             while (currentXp >= xpRequiredForNextLevel) {
                 currentXp -= xpRequiredForNextLevel;
                 currentLevel++;
-                xpRequiredForNextLevel = currentLevel * 100.0f;
                 leveledUp = true;
+
+                xpRequiredForNextLevel = currentLevel * 100.0f;
             }
 
             userDatabase.updateUserProgress(userId, currentPoints, currentXp, currentLevel);
-
-            updatedUser = userDatabase.getUserById(userId);
 
             txtCurrentLevel.setText("Level: " + currentLevel + " (" + (int)currentXp + " / " + (int)xpRequiredForNextLevel + " XP)");
 

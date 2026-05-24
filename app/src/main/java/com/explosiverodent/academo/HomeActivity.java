@@ -25,12 +25,9 @@ import com.explosiverodent.academo.adapter.LevelAdapter;
 import com.explosiverodent.academo.database.UserDatabase;
 import com.explosiverodent.academo.model.User;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -42,22 +39,15 @@ public class HomeActivity extends AppCompatActivity {
 
     private UserDatabase userDatabase;
     private int userId = -1;
-    private String currentPicUriString = null;
-    private String name = null;
+
 
     private SharedPreferences s;
 
-    // CORREÇÃO APLICADA AQUI: O launcher agora atualiza a variável global e o componente visual
     private final ActivityResultLauncher<Intent> editProfileLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    String newPicUri = result.getData().getStringExtra("NEW_PICTURE");
-                    if (newPicUri != null && !newPicUri.isEmpty()) {
-                        currentPicUriString = newPicUri;
-                        profilePicture.setImageURI(null);
-                        profilePicture.setImageURI(Uri.parse(newPicUri));
-                    }
+                if (result.getResultCode() == RESULT_OK) {
+                    loadUserData();
                 }
             }
     );
@@ -65,13 +55,10 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         EdgeToEdge.enable(this);
-
-        s = getSharedPreferences("refs", MODE_PRIVATE);
-
         setContentView(R.layout.activity_home);
 
+        s = getSharedPreferences("refs", MODE_PRIVATE);
         userDatabase = new UserDatabase(this);
 
         ViewCompat.setOnApplyWindowInsetsListener(
@@ -85,44 +72,35 @@ public class HomeActivity extends AppCompatActivity {
 
         userId = getIntent().getIntExtra("USER_ID", -1);
 
-
-        name = getIntent().getStringExtra("USER_NAME");
-        int level = getIntent().getIntExtra("USER_LEVEL", 1);
-        float xp = getIntent().getFloatExtra("USER_XP", 0.0f);
-        currentPicUriString = getIntent().getStringExtra("USER_PICTURE");
-
-        initViews(level, xp);
+        initViews();
         setupRecyclerView();
         setupBottomNavigation();
     }
 
-    private void initViews(int level, float xp) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserData();
+    }
+
+    private void initViews() {
         profilePicture = findViewById(R.id.profile_picture);
         userNameText = findViewById(R.id.user_name_text);
         levelText = findViewById(R.id.level_text);
         levelProgress = findViewById(R.id.level_progress);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        
-        if (name != null) userNameText.setText(name);
-        levelText.setText("LV " + level);
-        levelProgress.setProgress((int) xp);
-
-        if (currentPicUriString != null && !currentPicUriString.isEmpty()) {
-            try {
-                profilePicture.setImageURI(null);
-                profilePicture.setImageURI(Uri.parse(currentPicUriString));
-            } catch (SecurityException e) {
-                e.printStackTrace();
-            }
-        }
 
         profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                User user = userDatabase.getUserById(userId);
+                String currentName = (user != null) ? user.getUserName() : "";
+                String currentPic = (user != null) ? user.getProfilePicture() : "";
+
                 Intent editProfileIntent = new Intent(HomeActivity.this, EditProfileActivity.class);
                 editProfileIntent.putExtra("USER_ID", userId);
-                editProfileIntent.putExtra("USER_NAME", name);
-                editProfileIntent.putExtra("USER_PICTURE", currentPicUriString);
+                editProfileIntent.putExtra("USER_NAME", currentName);
+                editProfileIntent.putExtra("USER_PICTURE", currentPic);
 
                 editProfileLauncher.launch(editProfileIntent);
             }
@@ -133,10 +111,10 @@ public class HomeActivity extends AppCompatActivity {
         if (userId != -1) {
             User user = userDatabase.getUserById(userId);
             if (user != null) {
-                name = user.getUserName();
+                String name = user.getUserName();
                 int level = user.getLevel();
                 float xp = user.getXp();
-                currentPicUriString = user.getProfilePicture();
+                String currentPicUriString = user.getProfilePicture();
 
                 if (name != null) userNameText.setText(name);
                 levelText.setText("LV " + level);
