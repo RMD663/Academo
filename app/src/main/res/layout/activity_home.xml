@@ -89,23 +89,26 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/level_select_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/profile_bar"
-        android:layout_above="@id/bottom_navigation"
+        android:layout_alignParentBottom="true"
         android:clipToPadding="false"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp"/>
+        android:paddingBottom="16dp" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_filter"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
-        app:menu="@menu/bottom_nav_menu" />
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:contentDescription="Filter list"
+        app:srcCompat="@android:drawable/ic_menu_manage"
+        app:backgroundTint="#172038"
+        app:tint="#EBEDE9" />
 
 </RelativeLayout>

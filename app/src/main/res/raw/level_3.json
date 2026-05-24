@@ -1,0 +1,62 @@
+[
+  {
+    "text": "Em Portugol, qual comando é utilizado para exibir informações na tela?",
+    "type": "multiple_choice",
+    "options": ["escreva()", "imprima()", "leia()", "printf()"],
+    "correctAnswer": "escreva()"
+  },
+  {
+    "text": "Em C, qual é o tipo de dado utilizado para representar um caractere único?",
+    "type": "multiple_choice",
+    "options": ["string", "char", "int", "float"],
+    "correctAnswer": "char"
+  },
+  {
+    "text": "Qual o símbolo utilizado em C para encerrar uma instrução?",
+    "type": "multiple_choice",
+    "options": [".", ":", ";", ")"],
+    "correctAnswer": ";"
+  },
+  {
+    "text": "Em Portugol, como se declara uma variável de número inteiro?",
+    "type": "multiple_choice",
+    "options": ["real", "inteiro", "cadeia", "logico"],
+    "correctAnswer": "inteiro"
+  },
+  {
+    "text": "Em C, qual função é o ponto de entrada principal de um programa?",
+    "type": "multiple_choice",
+    "options": ["start()", "init()", "main()", "run()"],
+    "correctAnswer": "main()"
+  },
+  {
+    "text": "No Portugol, qual estrutura é usada para repetição com teste no início?",
+    "type": "multiple_choice",
+    "options": ["enquanto", "faca...enquanto", "para", "se"],
+    "correctAnswer": "enquanto"
+  },
+  {
+    "text": "Em C, qual é o especificador de formato para ler um número inteiro via scanf?",
+    "type": "multiple_choice",
+    "options": ["%f", "%c", "%d", "%s"],
+    "correctAnswer": "%d"
+  },
+  {
+    "text": "Como se representa um comentário de uma única linha em C?",
+    "type": "multiple_choice",
+    "options": ["//", "/* */", "#", ""],
+    "correctAnswer": "//"
+  },
+  {
+    "text": "Em Portugol, qual o operador lógico para 'E' (conjunção)?",
+    "type": "multiple_choice",
+    "options": ["&&", "e", "||", "ou"],
+    "correctAnswer": "e"
+  },
+  {
+    "text": "Qual é a estrutura de controle condicional utilizada em ambas as linguagens?",
+    "type": "multiple_choice",
+    "options": ["se / senao", "repetir / ate", "loop / end", "try / catch"],
+    "correctAnswer": "se / senao"
+  }
+]

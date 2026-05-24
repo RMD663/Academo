@@ -1,26 +1,40 @@
 [
   {
+    "text": "O que é o Sistema Operacional?",
     "type": "multiple_choice",
-    "text": "What is the capital of France?",
-    "options": ["London", "Paris", "Berlin", "Madrid"],
-    "correctAnswer": "Paris"
+    "options": ["Um hardware", "Um software de gerenciamento", "Um periférico", "Uma linguagem"],
+    "correctAnswer": "Um software de gerenciamento"
   },
   {
-    "type": "multiple_choice",
-    "text": "Qual das seguintes alternativas representa uma linguagem de programação usada nativamente para desenvolvimento Android?",
-    "options": ["Python", "Kotlin", "PHP", "C#"],
-    "correctAnswer": "Kotlin"
-  },
-  {
+    "text": "A RAM é uma memória volátil?",
     "type": "true_false",
-    "text": "The Moon is made of cheese.",
-    "options": ["true", "false"],
-    "correctAnswer": "false"
+    "correctAnswer": "true"
   },
   {
+    "text": "Qual componente é considerado o 'cérebro' do computador?",
     "type": "text_input",
-    "text": "Complete the name: Sherlock ______.",
-    "options": [],
-    "correctAnswer": "Holmes"
+    "correctAnswer": "CPU"
+  },
+  {
+    "text": "Qual das opções abaixo é um sistema de arquivos comum no Linux?",
+    "type": "multiple_choice",
+    "options": ["NTFS", "FAT32", "EXT4", "HFS+"],
+    "correctAnswer": "EXT4"
+  },
+  {
+    "text": "O BIOS é gravado em uma memória do tipo ROM.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Como é chamada a menor unidade de informação em um computador?",
+    "type": "text_input",
+    "correctAnswer": "bit"
+  },
+  {
+    "text": "Qual destes é um dispositivo de entrada?",
+    "type": "multiple_choice",
+    "options": ["Monitor", "Impressora", "Teclado", "Caixa de som"],
+    "correctAnswer": "Teclado"
   }
 ]

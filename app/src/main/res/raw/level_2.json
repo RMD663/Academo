@@ -1,0 +1,56 @@
+[
+  {
+    "text": "O que significa a sigla IP?",
+    "type": "multiple_choice",
+    "options": ["Internet Protocol", "Internal Program", "Internet Provider", "International Port"],
+    "correctAnswer": "Internet Protocol"
+  },
+  {
+    "text": "O HTTP é um protocolo utilizado para navegação na web.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual dispositivo conecta diferentes redes de computadores, como a sua casa à internet?",
+    "type": "text_input",
+    "correctAnswer": "Roteador"
+  },
+  {
+    "text": "Qual das opções é um endereço IP válido?",
+    "type": "multiple_choice",
+    "options": ["256.0.0.1", "192.168.1.1", "10.0.0.300", "999.999.999.999"],
+    "correctAnswer": "192.168.1.1"
+  },
+  {
+    "text": "O protocolo TCP garante a entrega ordenada dos pacotes.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual sigla representa uma rede local de computadores?",
+    "type": "text_input",
+    "correctAnswer": "LAN"
+  },
+  {
+    "text": "Qual destas portas é comumente usada para o protocolo HTTPS?",
+    "type": "multiple_choice",
+    "options": ["21", "80", "443", "25"],
+    "correctAnswer": "443"
+  },
+  {
+    "text": "O DNS é responsável por traduzir nomes de domínio em endereços IP.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual cabo de rede é o mais utilizado atualmente para conexões cabeadas?",
+    "type": "text_input",
+    "correctAnswer": "Ethernet"
+  },
+  {
+    "text": "Qual é a função do DHCP em uma rede?",
+    "type": "multiple_choice",
+    "options": ["Criptografar dados", "Atribuir IPs automaticamente", "Bloquear vírus", "Aumentar a velocidade do processador"],
+    "correctAnswer": "Atribuir IPs automaticamente"
+  }
+]

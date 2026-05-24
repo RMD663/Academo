@@ -12,6 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.explosiverodent.academo.database.UserDatabase;
 import com.explosiverodent.academo.model.User;
+import com.explosiverodent.academo.utils.RankingCalculator;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -70,17 +75,33 @@ public class ResultActivity extends AppCompatActivity {
         int corrects = getIntent().getIntExtra("CORRECT_COUNT", 0);
         int wrongs = getIntent().getIntExtra("WRONG_COUNT", 0);
 
+        int levelPosition = getIntent().getIntExtra("LEVEL_POSITION", -1);
+        String difficulty = getIntent().getStringExtra("LEVEL_DIFFICULTY");
+        long totalDurationMillis = getIntent().getLongExtra("TOTAL_DURATION", 0);
+
+        int levelScore = RankingCalculator.calculateScore(corrects, wrongs, totalDurationMillis);
+        String finalRank = RankingCalculator.calculateRank(corrects, wrongs, totalDurationMillis, difficulty);
+
         int pointsGained = corrects * 10;
         float xpGained = corrects * 12.0f;
 
+        if ("SS".equals(finalRank)) xpGained += 25.0f;
+        else if ("S".equals(finalRank)) xpGained += 15.0f;
+        else if ("A".equals(finalRank)) xpGained += 5.0f;
+
         txtPointsEarned.setText("+" + pointsGained + " PTS");
-        txtXpEarned.setText("+" + xpGained + " XP");
-        txtCorrectStat.setText("Correct: " + corrects);
-        txtWrongStat.setText("Wrong: " + wrongs);
+        txtXpEarned.setText("+" + (int) xpGained + " XP");
+        txtCorrectStat.setText("Correct: " + corrects + " [" + finalRank + "]");
+        txtWrongStat.setText("Wrong: " + wrongs + " (Score: " + levelScore + ")");
 
         if (userId == -1) {
             Toast.makeText(this, "Error: User session lost.", Toast.LENGTH_SHORT).show();
             return;
+        }
+
+        if (levelPosition != -1) {
+            String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+            userDatabase.saveLevelRecord(userId, levelPosition, levelScore, finalRank, currentDate);
         }
 
         User user = userDatabase.getUserById(userId);
@@ -90,23 +111,28 @@ public class ResultActivity extends AppCompatActivity {
             int currentLevel = user.getLevel();
 
             boolean leveledUp = false;
-
             float xpRequiredForNextLevel = currentLevel * 100.0f;
 
             while (currentXp >= xpRequiredForNextLevel) {
                 currentXp -= xpRequiredForNextLevel;
                 currentLevel++;
                 leveledUp = true;
-
                 xpRequiredForNextLevel = currentLevel * 100.0f;
             }
 
             userDatabase.updateUserProgress(userId, currentPoints, currentXp, currentLevel);
 
+            updatedUser = new User(userId, user.getUserName(), currentPoints, currentXp, currentLevel);
+            updatedUser.setProfilePicture(user.getProfilePicture());
+
             txtCurrentLevel.setText("Level: " + currentLevel + " (" + (int)currentXp + " / " + (int)xpRequiredForNextLevel + " XP)");
 
             if (leveledUp) {
                 txtLevelUpAlert.setVisibility(View.VISIBLE);
+                txtLevelUpAlert.setText("LEVEL UP!");
+            } else {
+                txtLevelUpAlert.setVisibility(View.VISIBLE);
+                txtLevelUpAlert.setText("RANK OBTAINED: " + finalRank);
             }
         }
     }

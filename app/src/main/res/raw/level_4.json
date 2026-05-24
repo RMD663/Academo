@@ -1,0 +1,30 @@
+[
+  {
+    "text": "A Administração Científica de Taylor focava na eficiência através da padronização dos movimentos dos operários.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "A Teoria das Relações Humanas, liderada por Elton Mayo, ignorou completamente os aspectos psicológicos e sociais do trabalho.",
+    "type": "true_false",
+    "correctAnswer": "false"
+  },
+  {
+    "text": "Qual dos princípios abaixo é um dos 14 princípios da administração de Henri Fayol?",
+    "type": "multiple_choice",
+    "options": ["Estudo de tempos e movimentos", "Unidade de comando", "Sincronização de máquinas", "Automação total"],
+    "correctAnswer": "Unidade de comando"
+  },
+  {
+    "text": "A Burocracia, segundo Max Weber, caracteriza-se pela impessoalidade e pela hierarquia rígida.",
+    "type": "multiple_choice",
+    "options": ["Sim, focada em carisma", "Sim, focada em racionalidade", "Não, focada em informalidade", "Não, focada em flexibilidade"],
+    "correctAnswer": "Sim, focada em racionalidade"
+  },
+  {
+    "text": "A Abordagem Sistêmica considera a organização como um sistema fechado, independente do ambiente externo.",
+    "type": "multiple_choice",
+    "options": ["Verdadeiro, pois foca na estrutura interna", "Verdadeiro, pois ignora variáveis externas", "Falso, pois as organizações são sistemas abertos", "Falso, pois foca apenas na produtividade"],
+    "correctAnswer": "Falso, pois as organizações são sistemas abertos"
+  }
+]
