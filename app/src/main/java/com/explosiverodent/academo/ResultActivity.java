@@ -21,6 +21,8 @@ public class ResultActivity extends AppCompatActivity {
     private UserDatabase userDatabase;
     private int userId;
 
+    private User updatedUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,7 @@ public class ResultActivity extends AppCompatActivity {
 
         initViews();
         processResults();
+        setupNavigation();
     }
 
     private void initViews() {
@@ -41,10 +44,22 @@ public class ResultActivity extends AppCompatActivity {
         txtCurrentLevel = findViewById(R.id.txt_current_level);
         txtLevelUpAlert = findViewById(R.id.txt_level_up_alert);
         btnBackHome = findViewById(R.id.btn_back_home);
+    }
 
+    private void setupNavigation(){
         btnBackHome.setOnClickListener(v -> {
             Intent intent = new Intent(ResultActivity.this, HomeActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            if (updatedUser != null) {
+                intent.putExtra("USER_ID", updatedUser.getId());
+                intent.putExtra("USER_NAME", updatedUser.getUserName());
+                intent.putExtra("USER_LEVEL", updatedUser.getLevel());
+                intent.putExtra("USER_XP", updatedUser.getXp());
+                intent.putExtra("USER_PICTURE", updatedUser.getProfilePicture());
+            } else {
+                intent.putExtra("USER_ID", userId);
+            }
+
             startActivity(intent);
             finish();
         });
@@ -86,6 +101,8 @@ public class ResultActivity extends AppCompatActivity {
             }
 
             userDatabase.updateUserProgress(userId, currentPoints, currentXp, currentLevel);
+
+            updatedUser = userDatabase.getUserById(userId);
 
             txtCurrentLevel.setText("Level: " + currentLevel + " (" + (int)currentXp + " / " + (int)xpRequiredForNextLevel + " XP)");
 

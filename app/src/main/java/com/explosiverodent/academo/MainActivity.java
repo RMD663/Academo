@@ -1,6 +1,7 @@
 package com.explosiverodent.academo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.explosiverodent.academo.database.UserDatabase;
 import com.explosiverodent.academo.model.User;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,9 +33,42 @@ public class MainActivity extends AppCompatActivity {
     EditText password_text;
     UserDatabase userDatabase;
 
+    TextInputLayout layoutUser;
+    TextInputLayout layoutPass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        userDatabase = new UserDatabase(this);
+
+        SharedPreferences s = getSharedPreferences("refs", MODE_PRIVATE);
+        long dateLoggedMilis = s.getLong("LOGIN_DATE", 0);
+        boolean logged = s.getBoolean("LOGGED", false);
+        long actualDate = System.currentTimeMillis();
+        long tenDaysMili = TimeUnit.DAYS.toMillis(10);
+        long days = actualDate - dateLoggedMilis;
+        if (dateLoggedMilis == 0 || days >= tenDaysMili) {
+            logged = false;
+        }
+        if (logged) {
+            String savedUser = s.getString("USER", "");
+            String savedPass = s.getString("PASS", "");
+
+            User user = userDatabase.validateLogin(savedUser, savedPass);
+
+            if (user != null) {
+                Intent homeIntent = new Intent(this, HomeActivity.class);
+                homeIntent.putExtra("USER_NAME", user.getUserName());
+                homeIntent.putExtra("USER_ID", user.getId());
+                homeIntent.putExtra("USER_LEVEL", user.getLevel());
+                homeIntent.putExtra("USER_XP", user.getXp());
+                homeIntent.putExtra("USER_PICTURE", user.getProfilePicture());
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(homeIntent);
+                finish();
+                return;
+            }
+        }
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -43,6 +81,15 @@ public class MainActivity extends AppCompatActivity {
 
         user_name_text = findViewById(R.id.input_user_name);
         password_text = findViewById(R.id.input_password);
+
+        layoutUser = findViewById(R.id.login_user_layout);
+        layoutPass = findViewById(R.id.login_password_layout);
+
+        String u = s.getString("USER", "");
+        String p = s.getString("PASS", "");
+
+        user_name_text.setText(u);
+        password_text.setText(p);
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +135,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(_user_name.isEmpty() || _password.isEmpty()){
-            Toast.makeText(getApplicationContext(), "Empty User Name or Password", Toast.LENGTH_LONG).show();
+            if (_user_name.isEmpty()){
+                layoutUser.setError("Campo Obrigatório");
+                user_name_text.requestFocus();
+            }else {
+                layoutUser.setError(null);
+            }
+
+            if (_password.isEmpty()){
+                layoutPass.setError("Campo Obrigatório");
+                password_text.requestFocus();
+            }else {
+                layoutPass.setError(null);
+            }
             return;
         }
 
@@ -96,8 +155,18 @@ public class MainActivity extends AppCompatActivity {
 
         user = userDatabase.validateLogin(_user_name, _password);
 
-
         if(user != null){
+            SharedPreferences s = getSharedPreferences("refs", MODE_PRIVATE);
+            SharedPreferences.Editor edit = s.edit();
+
+            long actualDate = System.currentTimeMillis();
+
+            edit.putLong("LOGIN_DATE", actualDate);
+            edit.putString("USER", _user_name);
+            edit.putString("PASS", _password);
+            edit.putBoolean("LOGGED", true);
+            edit.apply();
+
             Log.d("DATABASE TEST: ", user.getUserName());
             Toast.makeText(getApplicationContext(), "Welcome back " + user.getUserName() + "!", Toast.LENGTH_LONG).show();
             Intent homeIntent = new Intent(this, HomeActivity.class);
@@ -106,7 +175,9 @@ public class MainActivity extends AppCompatActivity {
             homeIntent.putExtra("USER_LEVEL", user.getLevel());
             homeIntent.putExtra("USER_XP", user.getXp());
             homeIntent.putExtra("USER_PICTURE", user.getProfilePicture());
+            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(homeIntent);
+            finish();
         } else {
             Toast.makeText(getApplicationContext(), "Invalid Username or Password", Toast.LENGTH_LONG).show();
         }

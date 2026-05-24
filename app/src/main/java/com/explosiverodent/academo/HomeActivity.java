@@ -1,6 +1,7 @@
 package com.explosiverodent.academo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -24,8 +25,12 @@ import com.explosiverodent.academo.adapter.LevelAdapter;
 import com.explosiverodent.academo.database.UserDatabase;
 import com.explosiverodent.academo.model.User;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -40,6 +45,9 @@ public class HomeActivity extends AppCompatActivity {
     private String currentPicUriString = null;
     private String name = null;
 
+    private SharedPreferences s;
+
+    // CORREÇÃO APLICADA AQUI: O launcher agora atualiza a variável global e o componente visual
     private final ActivityResultLauncher<Intent> editProfileLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -59,6 +67,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         EdgeToEdge.enable(this);
+
+        s = getSharedPreferences("refs", MODE_PRIVATE);
+
         setContentView(R.layout.activity_home);
 
         userDatabase = new UserDatabase(this);
@@ -74,23 +85,36 @@ public class HomeActivity extends AppCompatActivity {
 
         userId = getIntent().getIntExtra("USER_ID", -1);
 
-        initViews();
+
+        name = getIntent().getStringExtra("USER_NAME");
+        int level = getIntent().getIntExtra("USER_LEVEL", 1);
+        float xp = getIntent().getFloatExtra("USER_XP", 0.0f);
+        currentPicUriString = getIntent().getStringExtra("USER_PICTURE");
+
+        initViews(level, xp);
         setupRecyclerView();
         setupBottomNavigation();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadUserData();
-    }
-
-    private void initViews() {
+    private void initViews(int level, float xp) {
         profilePicture = findViewById(R.id.profile_picture);
         userNameText = findViewById(R.id.user_name_text);
         levelText = findViewById(R.id.level_text);
         levelProgress = findViewById(R.id.level_progress);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        
+        if (name != null) userNameText.setText(name);
+        levelText.setText("LV " + level);
+        levelProgress.setProgress((int) xp);
+
+        if (currentPicUriString != null && !currentPicUriString.isEmpty()) {
+            try {
+                profilePicture.setImageURI(null);
+                profilePicture.setImageURI(Uri.parse(currentPicUriString));
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            }
+        }
 
         profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override

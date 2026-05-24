@@ -150,6 +150,9 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("USER_ID", userId);
             intent.putExtra("CORRECT_COUNT", correctAnswersCount);
             intent.putExtra("WRONG_COUNT", wrongAnswersCount);
+
+            intent.putExtra("USER_LEVEL", getIntent().getIntExtra("USER_LEVEL", 1));
+            intent.putExtra("USER_XP", getIntent().getFloatExtra("USER_XP", 0.0f));
             startActivity(intent);
 
             finish();
