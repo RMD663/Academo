@@ -6,6 +6,12 @@
     "correctAnswer": "Paris"
   },
   {
+    "type": "multiple_choice",
+    "text": "Qual das seguintes alternativas representa uma linguagem de programação usada nativamente para desenvolvimento Android?",
+    "options": ["Python", "Kotlin", "PHP", "C#"],
+    "correctAnswer": "Kotlin"
+  },
+  {
     "type": "true_false",
     "text": "The Moon is made of cheese.",
     "options": ["true", "false"],

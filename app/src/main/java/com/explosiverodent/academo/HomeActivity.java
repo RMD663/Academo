@@ -1,6 +1,7 @@
 package com.explosiverodent.academo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -23,8 +24,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.explosiverodent.academo.adapter.LevelAdapter;
 import com.explosiverodent.academo.model.Level;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -37,6 +42,8 @@ public class HomeActivity extends AppCompatActivity {
     private int userId = -1;
     private String currentPicUriString = null;
     private String name = null;
+
+    private SharedPreferences s;
 
     // CORREÇÃO APLICADA AQUI: O launcher agora atualiza a variável global e o componente visual
     private final ActivityResultLauncher<Intent> editProfileLauncher = registerForActivityResult(
@@ -61,6 +68,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         EdgeToEdge.enable(this);
+
+        s = getSharedPreferences("refs", MODE_PRIVATE);
+
         setContentView(R.layout.activity_home);
 
         ViewCompat.setOnApplyWindowInsetsListener(
