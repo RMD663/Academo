@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="24dp"
     tools:context=".EditProfileActivity">
 
@@ -20,11 +20,13 @@
         android:id="@+id/edit_profile_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="monospace"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="EDIT PROFILE"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.05"
+        android:textColor="#212121"/>
 
     <FrameLayout
         android:id="@+id/profile_image_container"
@@ -39,16 +41,21 @@
           android:background="#ebede9"
           android:scaleType="centerCrop"
           android:src="@drawable/profile_picture" />
-
-      <ImageView
+      <View
           android:layout_width="40dp"
           android:layout_height="40dp"
           android:layout_gravity="bottom|end"
-          android:layout_margin="4dp"
           android:background="#172038"
-          android:padding="8dp"
+          android:alpha="0.8"/>
+
+      <ImageView
+          android:layout_width="24dp"
+          android:layout_height="24dp"
+          android:layout_gravity="bottom|end"
+          android:layout_margin="8dp"
           android:src="@android:drawable/ic_menu_camera"
           app:tint="#FFFFFF" />
+
     </FrameLayout>
 
     <TextView
@@ -56,18 +63,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Username"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:text="USERNAME"
+        android:textSize="12sp"
+        android:letterSpacing="0.1"
+        android:textColor="#757575" />
 
     <TextView
         android:id="@+id/edit_username_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="monospace"
+        android:layout_marginTop="4dp"
         android:text="Player Name"
-        android:textSize="22sp" />
+        android:textSize="20sp"
+        android:textColor="#000000" />
 
   </LinearLayout>
 
@@ -75,29 +83,32 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
-      android:gravity="center_horizontal">
+      android:gravity="center_horizontal"
+      android:padding="10dp">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save_profile"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/square_button_selector"
         android:fontFamily="monospace"
         android:text="SAVE CHANGES"
         android:textColor="#FFFFFF"
+        app:cornerRadius="10dp"
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_cancel_profile"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/square_button_selector"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:fontFamily="monospace"
         android:text="CANCEL"
-        android:textColor="#FFFFFF"
+        app:cornerRadius="10dp"
+        android:textColor="#757575"
         android:textSize="18sp"
         android:textStyle="bold" />
 
