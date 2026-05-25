@@ -49,6 +49,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView userNameText;
     private TextView levelText;
     private ProgressBar levelProgress;
+
+    private TextView textXP;
     private FloatingActionButton fabFilter;
     private FloatingActionButton fabImport;
     private RecyclerView recyclerViewLevels;
@@ -118,6 +120,7 @@ public class HomeActivity extends AppCompatActivity {
         levelProgress = findViewById(R.id.level_progress);
         fabFilter = findViewById(R.id.fab_filter);
         fabImport = findViewById(R.id.fab_import);
+        textXP = findViewById(R.id.xp_text);
 
         recyclerViewLevels = findViewById(R.id.level_select_list);
         recyclerViewLevels.setLayoutManager(new LinearLayoutManager(this));
@@ -156,6 +159,7 @@ public class HomeActivity extends AppCompatActivity {
                 int xpRequired = level * 100;
                 levelProgress.setMax(xpRequired);
                 levelProgress.setProgress((int) xp);
+                textXP.setText((int) xp + "/" + xpRequired + " XP");
 
                 if (currentPicUriString != null && !currentPicUriString.isEmpty()) {
                     try {
@@ -179,7 +183,7 @@ public class HomeActivity extends AppCompatActivity {
         Level lvl4 = new Level(4, "TEORIA GERAL DA ADMINISTRAÇÃO", "Hard", R.raw.level_4);
         Level lvl5 = new Level(5, "TÉCNICAS DE PROGRAMAÇÃO 2", "Medium", R.raw.level_5);
         Level lvl6 = new Level(6, "BANCO DE DADOS", "Hard", R.raw.level_6);
-
+        Level lvl7 = new Level(7, "POO", "Easy", R.raw.level_7);
 
         lvl1.setQuestionsCount(JsonReader.loadQuestions(this, lvl1.getRawResourceId()).size());
         lvl2.setQuestionsCount(JsonReader.loadQuestions(this, lvl2.getRawResourceId()).size());
@@ -187,6 +191,7 @@ public class HomeActivity extends AppCompatActivity {
         lvl4.setQuestionsCount(JsonReader.loadQuestions(this, lvl4.getRawResourceId()).size());
         lvl5.setQuestionsCount(JsonReader.loadQuestions(this, lvl5.getRawResourceId()).size());
         lvl6.setQuestionsCount(JsonReader.loadQuestions(this, lvl6.getRawResourceId()).size());
+        lvl7.setQuestionsCount(JsonReader.loadQuestions(this, lvl6.getRawResourceId()).size());
 
         levelList.add(lvl1);
         levelList.add(lvl2);
@@ -194,6 +199,7 @@ public class HomeActivity extends AppCompatActivity {
         levelList.add(lvl4);
         levelList.add(lvl5);
         levelList.add(lvl6);
+        levelList.add(lvl7);
 
         File folder = getFilesDir();
         File[] files = folder.listFiles();

@@ -1,0 +1,55 @@
+[
+  {
+    "text": "Qual pilar da POO permite ocultar detalhes internos de uma classe?",
+    "type": "multiple_choice",
+    "options": ["Encapsulamento", "Herança", "Polimorfismo", "Abstração"],
+    "correctAnswer": "Encapsulamento"
+  },
+  {
+    "text": "Uma classe é um molde para criar objetos.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "O que é uma instância de uma classe?",
+    "type": "text_input",
+    "correctAnswer": "Objeto"
+  },
+  {
+    "text": "Qual pilar permite que uma classe herde características de outra?",
+    "type": "multiple_choice",
+    "options": ["Polimorfismo", "Abstração", "Herança", "Encapsulamento"],
+    "correctAnswer": "Herança"
+  },
+  {
+    "text": "O método construtor é chamado automaticamente ao instanciar um objeto.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual termo define métodos com o mesmo nome e comportamentos diferentes?",
+    "type": "text_input",
+    "correctAnswer": "Polimorfismo"
+  },
+  {
+    "text": "Abstração consiste em representar apenas os detalhes essenciais de um objeto.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "O que é uma classe abstrata?",
+    "type": "multiple_choice",
+    "options": ["Uma classe sem métodos", "Uma classe que não pode ser instanciada", "Uma classe final", "Um objeto"],
+    "correctAnswer": "Uma classe que não pode ser instanciada"
+  },
+  {
+    "text": "Qual palavra-chave é usada em Java/C# para herdar de uma classe?",
+    "type": "text_input",
+    "correctAnswer": "extends"
+  },
+  {
+    "text": "Interface é uma classe que obriga a implementação de certos métodos.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  }
+]
