@@ -1,7 +1,7 @@
 package com.explosiverodent.academo;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -92,8 +92,10 @@ public class ResultActivity extends AppCompatActivity {
 
         txtPointsEarned.setText("+" + pointsGained + " PTS");
         txtXpEarned.setText("+" + (int) xpGained + " XP");
-        txtCorrectStat.setText("Correct: " + corrects + " [" + finalRank + "]");
-        txtWrongStat.setText("Wrong: " + wrongs + " (Score: " + levelScore + ")");
+        txtCorrectStat.setText("Correct Answers: " + corrects);
+        txtWrongStat.setText("Wrong Answers: " + wrongs + " (Score: " + levelScore + ")");
+
+        applyRankStyle(finalRank);
 
         if (userId == -1) {
             Toast.makeText(this, "Error: User session lost.", Toast.LENGTH_SHORT).show();
@@ -129,12 +131,32 @@ public class ResultActivity extends AppCompatActivity {
             txtCurrentLevel.setText("Level: " + currentLevel + " (" + (int)currentXp + " / " + (int)xpRequiredForNextLevel + " XP)");
 
             if (leveledUp) {
-                txtLevelUpAlert.setVisibility(View.VISIBLE);
-                txtLevelUpAlert.setText("LEVEL UP!");
+                txtLevelUpAlert.setText("LEVEL UP! ➔ RANK " + finalRank);
             } else {
-                txtLevelUpAlert.setVisibility(View.VISIBLE);
                 txtLevelUpAlert.setText("RANK OBTAINED: " + finalRank);
             }
+            txtLevelUpAlert.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void applyRankStyle(String rank) {
+        if (rank == null) return;
+        switch (rank.trim().toUpperCase()) {
+            case "SS":
+                txtLevelUpAlert.setTextColor(Color.parseColor("#FFD700"));
+                break;
+            case "S":
+                txtLevelUpAlert.setTextColor(Color.parseColor("#FFA500"));
+                break;
+            case "A":
+                txtLevelUpAlert.setTextColor(Color.parseColor("#9370DB"));
+                break;
+            case "B":
+                txtLevelUpAlert.setTextColor(Color.parseColor("#4682B4"));
+                break;
+            default:
+                txtLevelUpAlert.setTextColor(Color.parseColor("#8B8B8B"));
+                break;
         }
     }
 }
