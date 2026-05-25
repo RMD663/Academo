@@ -1,0 +1,44 @@
+[
+  {
+    "text": "Na lógica de primeira ordem, qual a negação de '∀x ∃y (P(x, y))'?",
+    "type": "text_input",
+    "correctAnswer": "∃x ∀y (¬P(x, y))"
+  },
+  {
+    "text": "O Problema da Parada (Halting Problem) é decidível para qualquer Máquina de Turing.",
+    "type": "true_false",
+    "correctAnswer": "false"
+  },
+  {
+    "text": "Qual princípio lógico permite provar 'P' assumindo '¬P' e chegando a uma contradição?",
+    "type": "text_input",
+    "correctAnswer": "Reductio ad absurdum"
+  },
+  {
+    "text": "Em lógica proposicional, o que caracteriza uma fórmula 'Tautológica'?",
+    "type": "multiple_choice",
+    "options": ["Sempre falsa", "Verdadeira apenas se as premissas forem verdadeiras", "Sempre verdadeira independentemente da interpretação", "Verdadeira apenas para variáveis negativas"],
+    "correctAnswer": "Sempre verdadeira independentemente da interpretação"
+  },
+  {
+    "text": "O Teorema da Incompletude de Gödel afirma que em sistemas formais consistentes existem sentenças verdadeiras que não podem ser provadas.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual é a complexidade de espaço do problema de Satisfatibilidade Proposicional (SAT)?",
+    "type": "multiple_choice",
+    "options": ["P", "NP-completo", "PSPACE", "EXPTIME"],
+    "correctAnswer": "NP-completo"
+  },
+  {
+    "text": "A lógica de segunda ordem permite quantificar sobre predicados (conjuntos).",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual termo define uma fórmula válida em todas as interpretações possíveis?",
+    "type": "text_input",
+    "correctAnswer": "Validade"
+  }
+]

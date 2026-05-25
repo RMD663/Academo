@@ -184,6 +184,10 @@ public class HomeActivity extends AppCompatActivity {
         Level lvl5 = new Level(5, "TÉCNICAS DE PROGRAMAÇÃO 2", "Medium", R.raw.level_5);
         Level lvl6 = new Level(6, "BANCO DE DADOS", "Hard", R.raw.level_6);
         Level lvl7 = new Level(7, "POO", "Easy", R.raw.level_7);
+        Level lvl8 = new Level(8, "GOVERNAÇA DE TI", "Medium", R.raw.level_8);
+        Level lvl9 = new Level(9, "MÉTODOS ÁGEIS", "Medium", R.raw.level_9);
+        Level lvl10 = new Level(10, "LÓGICA MATEMÁTICA COMPUTACIONAL", "Hard", R.raw.level_10);
+        Level lvl11 = new Level(11, "ARQUITETURA E ORGANIZAÇÃO DE COMPUTADORES", "Hard", R.raw.level_11);
 
         lvl1.setQuestionsCount(JsonReader.loadQuestions(this, lvl1.getRawResourceId()).size());
         lvl2.setQuestionsCount(JsonReader.loadQuestions(this, lvl2.getRawResourceId()).size());
@@ -191,7 +195,12 @@ public class HomeActivity extends AppCompatActivity {
         lvl4.setQuestionsCount(JsonReader.loadQuestions(this, lvl4.getRawResourceId()).size());
         lvl5.setQuestionsCount(JsonReader.loadQuestions(this, lvl5.getRawResourceId()).size());
         lvl6.setQuestionsCount(JsonReader.loadQuestions(this, lvl6.getRawResourceId()).size());
-        lvl7.setQuestionsCount(JsonReader.loadQuestions(this, lvl6.getRawResourceId()).size());
+        lvl7.setQuestionsCount(JsonReader.loadQuestions(this, lvl7.getRawResourceId()).size());
+        lvl8.setQuestionsCount(JsonReader.loadQuestions(this, lvl8.getRawResourceId()).size());
+        lvl9.setQuestionsCount(JsonReader.loadQuestions(this, lvl9.getRawResourceId()).size());
+        lvl10.setQuestionsCount(JsonReader.loadQuestions(this, lvl10.getRawResourceId()).size());
+        lvl11.setQuestionsCount(JsonReader.loadQuestions(this, lvl1.getRawResourceId()).size());
+
 
         levelList.add(lvl1);
         levelList.add(lvl2);
@@ -200,6 +209,10 @@ public class HomeActivity extends AppCompatActivity {
         levelList.add(lvl5);
         levelList.add(lvl6);
         levelList.add(lvl7);
+        levelList.add(lvl8);
+        levelList.add(lvl9);
+        levelList.add(lvl10);
+        levelList.add(lvl11);
 
         File folder = getFilesDir();
         File[] files = folder.listFiles();

@@ -1,0 +1,45 @@
+[
+  {
+    "text": "Qual o principal objetivo da Governança de TI em uma organização?",
+    "type": "multiple_choice",
+    "options": ["Substituir a gestão de TI", "Alinhar TI aos objetivos de negócio", "Aumentar apenas custos", "Eliminar suporte técnico"],
+    "correctAnswer": "Alinhar TI aos objetivos de negócio"
+  },
+  {
+    "text": "O COBIT foca principalmente na gestão de processos e entrega de serviços.",
+    "type": "true_false",
+    "correctAnswer": "false"
+  },
+  {
+    "text": "Qual framework é voltado para as melhores práticas de gestão de serviços de TI?",
+    "type": "text_input",
+    "correctAnswer": "ITIL"
+  },
+  {
+    "text": "O que define o conceito de 'Compliance' na Governança de TI?",
+    "type": "multiple_choice",
+    "options": ["Desenvolvimento de software", "Criação de redes", "Conformidade com leis e normas", "Monitoramento de hardware"],
+    "correctAnswer": "Conformidade com leis e normas"
+  },
+  {
+    "text": "A ISO/IEC 27001 é a norma internacional voltada para Gestão de Segurança da Informação.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual termo é usado para definir o valor total de risco após a aplicação de controles?",
+    "type": "text_input",
+    "correctAnswer": "Risco Residual"
+  },
+  {
+    "text": "O alinhamento estratégico é um dos pilares da Governança de TI.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual framework auxilia na medição de desempenho por meio de indicadores?",
+    "type": "multiple_choice",
+    "options": ["Balanced Scorecard", "CMMI", "SCRUM", "XP"],
+    "correctAnswer": "Balanced Scorecard"
+  }
+]
