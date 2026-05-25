@@ -145,10 +145,40 @@ public class HomeActivity extends AppCompatActivity {
         List<Level> levelList = new ArrayList<>();
         levelList.add(new Level(1, "Forest", "Easy", R.raw.level_1));
 
+<<<<<<< HEAD
         RecyclerView recyclerView = findViewById(R.id.level_select_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         LevelAdapter adapter = new LevelAdapter(
+=======
+        Level lvl1 = new Level(1, "FUNDAMENTOS DE SISTEMAS", "Easy", R.raw.level_1);
+        Level lvl2 = new Level(2, "FUNDAMENTOS DE REDES", "Easy", R.raw.level_2);
+        Level lvl3 = new Level(3, "TÉCNICAS DE PROGRAMAÇÃO 1", "Medium", R.raw.level_3);
+        Level lvl4 = new Level(4, "TEORIA GERAL DA ADMINISTRAÇÃO", "Hard", R.raw.level_4);
+        Level lvl5 = new Level(5, "TÉCNICAS DE PROGRAMAÇÃO 2", "Medium", R.raw.level_5);
+        Level lvl6 = new Level(6, "BANCO DE DADOS", "Hard", R.raw.level_6);
+
+
+        lvl1.setQuestionsCount(JsonReader.loadQuestions(this, lvl1.getRawResourceId()).size());
+        lvl2.setQuestionsCount(JsonReader.loadQuestions(this, lvl2.getRawResourceId()).size());
+        lvl3.setQuestionsCount(JsonReader.loadQuestions(this, lvl3.getRawResourceId()).size());
+        lvl4.setQuestionsCount(JsonReader.loadQuestions(this, lvl4.getRawResourceId()).size());
+        lvl5.setQuestionsCount(JsonReader.loadQuestions(this, lvl5.getRawResourceId()).size());
+        lvl6.setQuestionsCount(JsonReader.loadQuestions(this, lvl6.getRawResourceId()).size());
+
+        levelList.add(lvl1);
+        levelList.add(lvl2);
+        levelList.add(lvl3);
+        levelList.add(lvl4);
+        levelList.add(lvl5);
+        levelList.add(lvl6);
+
+        for (Level level : levelList) {
+            userDatabase.loadLevelStats(userId, level);
+        }
+
+        levelAdapter = new LevelAdapter(
+>>>>>>> fefa681 (questions added)
                 levelList,
                 level -> {
                     Intent intent = new Intent(HomeActivity.this, GameActivity.class);

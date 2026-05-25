@@ -1,0 +1,46 @@
+[
+  {
+    "text": "Qual fenômeno ocorre em 'Read Committed' mas não em 'Repeatable Read'?",
+    "type": "multiple_choice",
+    "options": ["Dirty Read", "Non-repeatable Read", "Lost Update", "Phantom Read"],
+    "correctAnswer": "Non-repeatable Read"
+  },
+  {
+    "text": "O que faz a cláusula 'DEFERRED' em restrições de integridade?",
+    "type": "multiple_choice",
+    "options": ["Verifica ao fim da transação", "Ignora a restrição", "Aplica em SELECTs", "Trava a tabela"],
+    "correctAnswer": "Verifica ao fim da transação"
+  },
+  {
+    "text": "Índices B-Tree garantem tempo de busca constante O(1) para qualquer dado.",
+    "type": "true_false",
+    "correctAnswer": "false"
+  },
+  {
+    "text": "Qual comando reverte alterações até um ponto específico da transação?",
+    "type": "text_input",
+    "correctAnswer": "ROLLBACK TO SAVEPOINT"
+  },
+  {
+    "text": "O que diferencia um 'Clustered Index'?",
+    "type": "multiple_choice",
+    "options": ["Ordena dados fisicamente", "Não permite chaves únicas", "É para tabelas pequenas", "Não tem diferença"],
+    "correctAnswer": "Ordena dados fisicamente"
+  },
+  {
+    "text": "O teorema CAP permite garantir Consistência, Disponibilidade e Tolerância simultaneamente.",
+    "type": "true_false",
+    "correctAnswer": "false"
+  },
+  {
+    "text": "Qual técnica pré-calcula e armazena resultados de consultas complexas?",
+    "type": "text_input",
+    "correctAnswer": "Materialized View"
+  },
+  {
+    "text": "Qual o requisito da 3NF em relação a dependências?",
+    "type": "multiple_choice",
+    "options": ["Sem dependências transitivas", "Sem colunas multivaloradas", "Chave única", "Sem redundância"],
+    "correctAnswer": "Sem dependências transitivas"
+  }
+]
