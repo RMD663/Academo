@@ -1,0 +1,46 @@
+[
+  {
+    "text": "Qual é o resultado da expressão [x**2 for x in range(5) if x % 2 == 0]?",
+    "type": "multiple_choice",
+    "options": ["[0, 2, 4, 6, 8]", "[0, 4, 16]", "[1, 9, 25]", "[0, 1, 4, 9, 16]"],
+    "correctAnswer": "[0, 4, 16]"
+  },
+  {
+    "text": "Como podemos garantir que um ficheiro seja fechado automaticamente após o processamento em Python?",
+    "type": "multiple_choice",
+    "options": ["try-finally", "instrução with", "variável global", "Garbage Collector"],
+    "correctAnswer": "instrução with"
+  },
+  {
+    "text": "Em Python, listas são estruturas de dados mutáveis, enquanto tuplos são imutáveis.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "O que acontece se tentar aceder a uma chave que não existe num dicionário usando o método .get()?",
+    "type": "multiple_choice",
+    "options": ["KeyError", "Retorna None", "Adiciona chave com None", "Retorna False"],
+    "correctAnswer": "Retorna None"
+  },
+  {
+    "text": "Qual é a diferença entre uma lista e um tuplo em Python?",
+    "type": "multiple_choice",
+    "options": ["Listas imutáveis, tuplos mutáveis", "Ambas mutáveis", "Tuplos imutáveis, listas mutáveis", "Sem diferença"],
+    "correctAnswer": "RTuplos imutáveis, listas mutáveis"
+  },
+  {
+    "text": "O comando 'finally' em um bloco try-except só é executado se ocorrer uma exceção.",
+    "type": "true_false",
+    "correctAnswer": "false"
+  },
+  {
+    "text": "Qual palavra-chave é usada para garantir o fechamento automático de um arquivo ao abrir?",
+    "type": "text_input",
+    "correctAnswer": "with"
+  },
+  {
+    "text": "Qual prefixo de argumento em funções Python coleta argumentos nomeados em um dicionário?",
+    "type": "text_input",
+    "correctAnswer": "**kwargs"
+  }
+]
