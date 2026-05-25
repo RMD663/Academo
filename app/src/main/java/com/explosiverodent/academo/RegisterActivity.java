@@ -1,6 +1,7 @@
 package com.explosiverodent.academo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -141,7 +142,14 @@ public class RegisterActivity extends AppCompatActivity {
             boolean success = userDatabase.insertUser(user, register_password);
 
             if(success){
+                SharedPreferences s = getSharedPreferences("refs", MODE_PRIVATE);
+                s.edit().putBoolean("LOGGED", false).apply();
+
+                Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
+
                 Intent mainIntent = new Intent(this, MainActivity.class);
+                mainIntent.putExtra("JUST_REGISTERED_USER", register_user_name);
+
                 startActivity(mainIntent);
                 finish();
             }

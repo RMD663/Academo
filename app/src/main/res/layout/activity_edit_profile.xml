@@ -88,7 +88,17 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold" />
-
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/square_button_selector"
+        android:fontFamily="monospace"
+        android:text="EXIT"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold" />
     <Button
         android:id="@+id/btn_cancel_profile"
         android:layout_width="220dp"
@@ -100,6 +110,8 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+
 
   </LinearLayout>
 

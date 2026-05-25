@@ -85,11 +85,18 @@ public class MainActivity extends AppCompatActivity {
         layoutUser = findViewById(R.id.login_user_layout);
         layoutPass = findViewById(R.id.login_password_layout);
 
-        String u = s.getString("USER", "");
-        String p = s.getString("PASS", "");
+        String justRegistered = getIntent().getStringExtra("JUST_REGISTERED_USER");
 
-        user_name_text.setText(u);
-        password_text.setText(p);
+        if (justRegistered != null && !justRegistered.isEmpty()) {
+            user_name_text.setText(justRegistered);
+            password_text.setText("");
+            password_text.requestFocus();
+        } else {
+            String u = s.getString("USER", "");
+            String p = s.getString("PASS", "");
+            user_name_text.setText(u);
+            password_text.setText(p);
+        }
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
             edit.putBoolean("LOGGED", true);
             edit.apply();
 
-            Log.d("DATABASE TEST: ", user.getUserName());
             Toast.makeText(getApplicationContext(), "Welcome back " + user.getUserName() + "!", Toast.LENGTH_LONG).show();
             Intent homeIntent = new Intent(this, HomeActivity.class);
             homeIntent.putExtra("USER_NAME", user.getUserName());

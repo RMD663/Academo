@@ -175,10 +175,11 @@ public class HomeActivity extends AppCompatActivity {
 
         Level lvl1 = new Level(1, "FUNDAMENTOS DE SISTEMAS", "Easy", R.raw.level_1);
         Level lvl2 = new Level(2, "FUNDAMENTOS DE REDES", "Easy", R.raw.level_2);
-        Level lvl3 = new Level(3, "TÉCNICAS DE PROGRAMAÇÃO 1", "Medium", R.raw.level_3);
-        Level lvl4 = new Level(4, "TEORIA GERAL DA ADMINISTRAÇÃO", "Hard", R.raw.level_4);
-        Level lvl5 = new Level(5, "TÉCNICAS DE PROGRAMAÇÃO 2", "Medium", R.raw.level_5);
-        Level lvl6 = new Level(6, "BANCO DE DADOS", "Hard", R.raw.level_6);
+        Level lvl3 = new Level(3, "INTRODUÇÃO A TÉCNICAS DE PROGRAMAÇÃO 1", "Medium", R.raw.level_3);
+        Level lvl4 = new Level(4, "INTRODUÇÃO A TEORIA GERAL DA ADMINISTRAÇÃO", "Hard", R.raw.level_4);
+        Level lvl5 = new Level(5, "INTRODUÇÃO A BANCO DE DADOS", "Easy", R.raw.level_5);
+        Level lvl6 = new Level(6, "INTRODUÇÃO A CAMADAS DE REDES", "Easy", R.raw.level_6);
+        Level lvl7 = new Level(7, "INTRODUÇÃO A ENGENHARIA DE SOFTWARE", "Easy", R.raw.level_7);
 
 
         lvl1.setQuestionsCount(JsonReader.loadQuestions(this, lvl1.getRawResourceId()).size());
@@ -187,6 +188,7 @@ public class HomeActivity extends AppCompatActivity {
         lvl4.setQuestionsCount(JsonReader.loadQuestions(this, lvl4.getRawResourceId()).size());
         lvl5.setQuestionsCount(JsonReader.loadQuestions(this, lvl5.getRawResourceId()).size());
         lvl6.setQuestionsCount(JsonReader.loadQuestions(this, lvl6.getRawResourceId()).size());
+        lvl7.setQuestionsCount(JsonReader.loadQuestions(this, lvl7.getRawResourceId()).size());
 
         levelList.add(lvl1);
         levelList.add(lvl2);
@@ -194,6 +196,8 @@ public class HomeActivity extends AppCompatActivity {
         levelList.add(lvl4);
         levelList.add(lvl5);
         levelList.add(lvl6);
+        levelList.add(lvl7);
+
 
         File folder = getFilesDir();
         File[] files = folder.listFiles();

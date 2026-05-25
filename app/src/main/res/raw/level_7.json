@@ -1,0 +1,57 @@
+[
+  {
+    "text": "Qual ciclo de vida de desenvolvimento de software é conhecido por ser estritamente sequencial e linear?",
+    "type": "multiple_choice",
+    "options": [
+      "Cascata",
+      "Scrum",
+      "XP",
+      "Espiral"
+    ],
+    "correctAnswer": "Cascata"
+  },
+  {
+    "text": "O que são 'Requisitos Funcionais' em um projeto de software?",
+    "type": "multiple_choice",
+    "options": [
+      "O custo total de desenvolvimento do sistema",
+      "O desempenho e a segurança do servidor",
+      "As funções e ações que o sistema deve executar",
+      "O prazo final para a entrega do projeto"
+    ],
+    "correctAnswer": "As funções e ações que o sistema deve executar"
+  },
+  {
+    "text": "Na metodologia ágil Scrum, quem é o responsável por priorizar as necessidades do cliente no Product Backlog?",
+    "type": "multiple_choice",
+    "options": [
+      "Scrum Master",
+      "Product Owner",
+      "Development Team",
+      "DBA"
+    ],
+    "correctAnswer": "Product Owner"
+  },
+  {
+    "text": "Qual o objetivo principal da fase de 'Testes' no desenvolvimento de software?",
+    "type": "multiple_choice",
+    "options": [
+      "Descobrir falhas e garantir a qualidade do sistema",
+      "Vender o produto para novos clientes",
+      "Escrever o código-fonte inicial do programa",
+      "Desenvolver a interface gráfica do aplicativo"
+    ],
+    "correctAnswer": "Descobrir falhas e garantir a qualidade do sistema"
+  },
+  {
+    "text": "O que caracteriza uma metodologia de desenvolvimento descrita como 'Ágil'?",
+    "type": "multiple_choice",
+    "options": [
+      "Processos rígidos que nunca mudam",
+      "Falta total de documentação e código desorganizado",
+      "Entregas rápidas, iterativas e foco em adaptação",
+      "Desenvolvimento focado apenas em hardware"
+    ],
+    "correctAnswer": "Entregas rápidas, iterativas e foco em adaptação"
+  }
+]

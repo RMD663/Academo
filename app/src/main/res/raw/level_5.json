@@ -1,46 +1,90 @@
 [
   {
-    "text": "Qual é o resultado da expressão [x**2 for x in range(5) if x % 2 == 0]?",
+    "text": "O que significa a sigla SGBD?",
     "type": "multiple_choice",
-    "options": ["[0, 2, 4, 6, 8]", "[0, 4, 16]", "[1, 9, 25]", "[0, 1, 4, 9, 16]"],
-    "correctAnswer": "[0, 4, 16]"
+    "options": [
+      "Sistema de Gerenciamento de Banco de Dados",
+      "Servidor Geral de Busca de Dados",
+      "Sistema de Gráficos e Banco Digital",
+      "Software de Gravação de Backups"
+    ],
+    "correctAnswer": "Sistema de Gerenciamento de Banco de Dados"
   },
   {
-    "text": "Como podemos garantir que um ficheiro seja fechado automaticamente após o processamento em Python?",
+    "text": "Qual comando SQL é utilizado para extrair ou consultar dados de uma tabela?",
     "type": "multiple_choice",
-    "options": ["try-finally", "instrução with", "variável global", "Garbage Collector"],
-    "correctAnswer": "instrução with"
+    "options": [
+      "INSERT",
+      "DELETE",
+      "UPDATE",
+      "SELECT"
+    ],
+    "correctAnswer": "SELECT"
   },
   {
-    "text": "Em Python, listas são estruturas de dados mutáveis, enquanto tuplos são imutáveis.",
-    "type": "true_false",
-    "correctAnswer": "true"
-  },
-  {
-    "text": "O que acontece se tentar aceder a uma chave que não existe num dicionário usando o método .get()?",
+    "text": "Em um banco de dados relacional, o que representa uma linha em uma tabela?",
     "type": "multiple_choice",
-    "options": ["KeyError", "Retorna None", "Adiciona chave com None", "Retorna False"],
-    "correctAnswer": "Retorna None"
+    "options": [
+      "Um atributo",
+      "Um registro ou tupla",
+      "Um tipo de dado",
+      "Uma chave estrangeira"
+    ],
+    "correctAnswer": "Um registro ou tupla"
   },
   {
-    "text": "Qual é a diferença entre uma lista e um tuplo em Python?",
+    "text": "Qual é a principal função de uma Chave Primária (Primary Key)?",
     "type": "multiple_choice",
-    "options": ["Listas imutáveis, tuplos mutáveis", "Ambas mutáveis", "Tuplos imutáveis, listas mutáveis", "Sem diferença"],
-    "correctAnswer": "RTuplos imutáveis, listas mutáveis"
+    "options": [
+      "Permitir valores duplicados na tabela",
+      "Conectar duas tabelas diferentes",
+      "Identificar de forma única cada registro de uma tabela",
+      "Apagar registros antigos automaticamente"
+    ],
+    "correctAnswer": "Identificar de forma única cada registro de uma tabela"
   },
   {
-    "text": "O comando 'finally' em um bloco try-except só é executado se ocorrer uma exceção.",
-    "type": "true_false",
-    "correctAnswer": "false"
+    "text": "Qual dos seguintes exemplos representa um Banco de Dados Não-Relacional (NoSQL)?",
+    "type": "multiple_choice",
+    "options": [
+      "MySQL",
+      "PostgreSQL",
+      "Oracle DB",
+      "MongoDB"
+    ],
+    "correctAnswer": "MongoDB"
   },
   {
-    "text": "Qual palavra-chave é usada para garantir o fechamento automático de um arquivo ao abrir?",
-    "type": "text_input",
-    "correctAnswer": "with"
+    "text": "O que as colunas de uma tabela de banco de dados representam?",
+    "type": "multiple_choice",
+    "options": [
+      "Os campos ou atributos dos dados",
+      "As chaves estrangeiras obrigatórias",
+      "As linhas de registros inseridos",
+      "Os índices de criptografia"
+    ],
+    "correctAnswer": "Os campos ou atributos dos dados"
   },
   {
-    "text": "Qual prefixo de argumento em funções Python coleta argumentos nomeados em um dicionário?",
-    "type": "text_input",
-    "correctAnswer": "**kwargs"
+    "text": "Qual comando SQL é usado para adicionar novos registros a uma tabela?",
+    "type": "multiple_choice",
+    "options": [
+      "CREATE",
+      "INSERT INTO",
+      "ADD ROW",
+      "SELECT NEW"
+    ],
+    "correctAnswer": "INSERT INTO"
+  },
+  {
+    "text": "O que é uma Chave Estrangeira (Foreign Key)?",
+    "type": "multiple_choice",
+    "options": [
+      "Uma chave que não serve para nada no banco",
+      "Um campo que cria uma relação entre duas tabelas",
+      "Uma senha para acessar o banco externamente",
+      "Um identificador exclusivo que não pode se repetir"
+    ],
+    "correctAnswer": "Um campo que cria uma relação entre duas tabelas"
   }
 ]

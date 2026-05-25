@@ -1,6 +1,7 @@
 package com.explosiverodent.academo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private FrameLayout changePictureClickZone;
     private Button btnSave;
     private Button btnCancel;
+    private Button btnExit;
 
     private UserDatabase userDatabase;
     private int userId = -1;
@@ -69,6 +71,7 @@ public class EditProfileActivity extends AppCompatActivity {
         changePictureClickZone = findViewById(R.id.profile_image_container);
         btnSave = findViewById(R.id.btn_save_profile);
         btnCancel = findViewById(R.id.btn_cancel_profile);
+        btnExit = findViewById(R.id.btn_exit);
 
         if (name != null) {
             usernameText.setText(name);
@@ -98,6 +101,28 @@ public class EditProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logoutUser();
+            }
+        });
+    }
+
+    private void logoutUser() {
+        SharedPreferences s = getSharedPreferences("refs", MODE_PRIVATE);
+        SharedPreferences.Editor edit = s.edit();
+        edit.clear();
+        edit.apply();
+
+        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
+        finish();
     }
 
     private String saveImageToInternalStorage(Uri uri) {
