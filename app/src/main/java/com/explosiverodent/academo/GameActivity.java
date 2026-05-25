@@ -18,8 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.explosiverodent.academo.model.Question;
 import com.explosiverodent.academo.jsonreader.JsonReader;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,6 +114,12 @@ public class GameActivity extends AppCompatActivity {
             txtLevelTitle.setText(levelTitle.toUpperCase());
         }
 
+        int rawResourceId = getIntent().getIntExtra("LEVEL_RESOURCE", -1);
+        if (rawResourceId == -1) {
+            finish();
+            return;
+        }
+
         switch (levelDifficulty.trim().toLowerCase()) {
             case "hard":
                 questionTimeLimitMs = 6000;
@@ -130,37 +134,9 @@ public class GameActivity extends AppCompatActivity {
         }
         secondsRemaining = questionTimeLimitMs / 1000;
 
-        String customUriString = getIntent().getStringExtra("LEVEL_CUSTOM_URI");
-
-        if (customUriString != null && !customUriString.trim().isEmpty()) {
-            try {
-                File file = new File(customUriString);
-                if (file.exists()) {
-                    FileInputStream fis = new FileInputStream(file);
-                    questionList = JsonReader.loadQuestionsFromStream(this, fis);
-                } else {
-                    android.util.Log.e("GAME_ACTIVITY", "File not found path: " + customUriString);
-                    Toast.makeText(this, "Failed to load custom level file.", Toast.LENGTH_SHORT).show();
-                    finish();
-                    return;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Failed to load custom level file.", Toast.LENGTH_SHORT).show();
-                finish();
-                return;
-            }
-        } else {
-            int rawResourceId = getIntent().getIntExtra("LEVEL_RESOURCE", -1);
-            if (rawResourceId == -1 || rawResourceId == 0) {
-                Toast.makeText(this, "No valid questions dataset provided.", Toast.LENGTH_SHORT).show();
-                finish();
-                return;
-            }
-            questionList = JsonReader.loadQuestions(this, rawResourceId);
-        }
-
+        questionList = JsonReader.loadQuestions(this, rawResourceId);
         levelStartTime = System.currentTimeMillis();
+
         txtScore.setText("0000");
         txtRank.setText("S");
     }

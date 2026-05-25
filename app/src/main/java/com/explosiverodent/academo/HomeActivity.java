@@ -1,5 +1,6 @@
 package com.explosiverodent.academo;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -49,6 +50,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private SharedPreferences s;
 
+    private TextView textXp;
+
     private final ActivityResultLauncher<Intent> editProfileLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -96,6 +99,7 @@ public class HomeActivity extends AppCompatActivity {
         levelText = findViewById(R.id.level_text);
         levelProgress = findViewById(R.id.level_progress);
         fabFilter = findViewById(R.id.fab_filter);
+        textXp = findViewById(R.id.xp_text);
 
         recyclerViewLevels = findViewById(R.id.level_select_list);
         recyclerViewLevels.setLayoutManager(new LinearLayoutManager(this));
@@ -132,6 +136,7 @@ public class HomeActivity extends AppCompatActivity {
                 int xpRequired = level * 100;
                 levelProgress.setMax(xpRequired);
                 levelProgress.setProgress((int) xp);
+                textXp.setText((int)xp + "/" + xpRequired + " XP");
 
                 if (currentPicUriString != null && !currentPicUriString.isEmpty()) {
                     try {

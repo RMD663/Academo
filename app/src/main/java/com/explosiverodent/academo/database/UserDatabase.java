@@ -14,7 +14,7 @@ import java.util.List;
 
 public class UserDatabase extends SQLiteOpenHelper {
     private static final String DATABASE = "ACADEMO";
-    private static final int VERSION = 10;
+    private static final int VERSION = 5;
 
     // table Users
     private static final String TABLE_USERS = "users";
@@ -87,8 +87,7 @@ public class UserDatabase extends SQLiteOpenHelper {
     public void saveLevelRecord(int userId, int levelPosition, int score, String rank, String date) {
         SQLiteDatabase database = this.getWritableDatabase();
 
-        String query = "SELECT " + COL_HIST_BEST_SCORE + ", " + COL_HIST_ATTEMPTS_COUNT + ", " + COL_HIST_MAX_RANK
-                + " FROM " + TABLE_LEVELS_HISTORY
+        String query = "SELECT " + COL_HIST_BEST_SCORE + ", " + COL_HIST_ATTEMPTS_COUNT + " FROM " + TABLE_LEVELS_HISTORY
                 + " WHERE " + COL_HIST_USER_ID + " = ? AND " + COL_HIST_LEVEL_POS + " = ?";
         Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(userId), String.valueOf(levelPosition)});
 
@@ -98,20 +97,13 @@ public class UserDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             int previousBestScore = cursor.getInt(0);
             int currentAttempts = cursor.getInt(1);
-            String previousMaxRank = cursor.getString(2);
 
             values.put(COL_HIST_ATTEMPTS_COUNT, currentAttempts + 1);
 
-            boolean isNewScoreHigher = score > previousBestScore;
-            boolean isNewRankBetter = getRankWeight(rank) > getRankWeight(previousMaxRank);
-
-            if (isNewScoreHigher) {
+            if (score > previousBestScore) {
                 values.put(COL_HIST_BEST_SCORE, score);
-            }
-            if (isNewRankBetter || isNewScoreHigher) {
                 values.put(COL_HIST_MAX_RANK, rank);
             }
-
             database.update(TABLE_LEVELS_HISTORY, values,
                     COL_HIST_USER_ID + " = ? AND " + COL_HIST_LEVEL_POS + " = ?",
                     new String[]{String.valueOf(userId), String.valueOf(levelPosition)});
@@ -124,19 +116,6 @@ public class UserDatabase extends SQLiteOpenHelper {
             database.insert(TABLE_LEVELS_HISTORY, null, values);
         }
         cursor.close();
-    }
-
-    private int getRankWeight(String rank) {
-        if (rank == null) return 0;
-        switch (rank.trim().toUpperCase()) {
-            case "SS": return 5;
-            case "S": return 4;
-            case "A": return 3;
-            case "B": return 2;
-            case "C": return 1;
-            case "D":
-            default: return 0;
-        }
     }
 
     public void loadLevelStats(int userId, Level level) {

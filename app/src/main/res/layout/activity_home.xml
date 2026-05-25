@@ -132,16 +132,4 @@
         app:backgroundTint="#172038"
         app:tint="#EBEDE9" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_import"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/fab_filter"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:contentDescription="Import level"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        app:backgroundTint="#468232"
-        app:tint="#FFFFFF" />
-
 </RelativeLayout>

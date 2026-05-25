@@ -7,7 +7,7 @@ public class RankingCalculator {
         score -= (wrongs * 40);
 
         float totalSeconds = totalDurationMillis / 1000f;
-        score -= (int) (totalSeconds * 0.5f);
+        score -= (int) (totalSeconds * 1.5f);
 
         return Math.max(0, score);
     }
@@ -21,21 +21,24 @@ public class RankingCalculator {
 
         switch (difficulty.trim().toLowerCase()) {
             case "hard":
-                difficultyMultiplier = 1.3f;
+                difficultyMultiplier = 1.5f;
                 break;
             case "medium":
-                difficultyMultiplier = 1.15f;
+                difficultyMultiplier = 1.2f;
                 break;
             case "easy":
             default:
                 difficultyMultiplier = 1.0f;
                 break;
         }
+
         float maxPossibleScore = totalQuestions * 100f;
         int rawScore = calculateScore(corrects, wrongs, totalDurationMillis);
-        float finalScore = rawScore * difficultyMultiplier;
 
-        float performanceRatio = finalScore / maxPossibleScore;
+        float finalScore = rawScore * difficultyMultiplier;
+        float adjustedMaxScore = maxPossibleScore * difficultyMultiplier;
+
+        float performanceRatio = finalScore / adjustedMaxScore;
 
         if (performanceRatio >= 0.95f && wrongs == 0) return "SS";
         if (performanceRatio >= 0.85f) return "S";
