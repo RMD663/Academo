@@ -1,10 +1,11 @@
 package com.explosiverodent.academo;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.graphics.Insets;
@@ -29,9 +31,17 @@ import com.explosiverodent.academo.model.Level;
 import com.explosiverodent.academo.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -40,17 +50,16 @@ public class HomeActivity extends AppCompatActivity {
     private TextView levelText;
     private ProgressBar levelProgress;
     private FloatingActionButton fabFilter;
-
+    private FloatingActionButton fabImport;
     private RecyclerView recyclerViewLevels;
     private LevelAdapter levelAdapter;
     private List<Level> levelList = new ArrayList<>();
+    private Map<Integer, String> customPathsMap = new HashMap<>();
 
     private UserDatabase userDatabase;
     private int userId = -1;
 
     private SharedPreferences s;
-
-    private TextView textXp;
 
     private final ActivityResultLauncher<Intent> editProfileLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -58,6 +67,15 @@ public class HomeActivity extends AppCompatActivity {
                 if (result.getResultCode() == RESULT_OK) {
                     loadUserData();
                     loadLevelsData();
+                }
+            }
+    );
+
+    private final ActivityResultLauncher<String> filePickerLauncher = registerForActivityResult(
+            new ActivityResultContracts.GetContent(),
+            uri -> {
+                if (uri != null) {
+                    processImportedLevel(uri);
                 }
             }
     );
@@ -99,7 +117,7 @@ public class HomeActivity extends AppCompatActivity {
         levelText = findViewById(R.id.level_text);
         levelProgress = findViewById(R.id.level_progress);
         fabFilter = findViewById(R.id.fab_filter);
-        textXp = findViewById(R.id.xp_text);
+        fabImport = findViewById(R.id.fab_import);
 
         recyclerViewLevels = findViewById(R.id.level_select_list);
         recyclerViewLevels.setLayoutManager(new LinearLayoutManager(this));
@@ -119,6 +137,8 @@ public class HomeActivity extends AppCompatActivity {
                 editProfileLauncher.launch(editProfileIntent);
             }
         });
+
+        fabImport.setOnClickListener(v -> filePickerLauncher.launch("application/json"));
     }
 
     private void loadUserData() {
@@ -136,7 +156,6 @@ public class HomeActivity extends AppCompatActivity {
                 int xpRequired = level * 100;
                 levelProgress.setMax(xpRequired);
                 levelProgress.setProgress((int) xp);
-                textXp.setText((int)xp + "/" + xpRequired + " XP");
 
                 if (currentPicUriString != null && !currentPicUriString.isEmpty()) {
                     try {
@@ -152,6 +171,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void loadLevelsData() {
         levelList.clear();
+        customPathsMap.clear();
 
         Level lvl1 = new Level(1, "FUNDAMENTOS DE SISTEMAS", "Easy", R.raw.level_1);
         Level lvl2 = new Level(2, "FUNDAMENTOS DE REDES", "Easy", R.raw.level_2);
@@ -175,6 +195,42 @@ public class HomeActivity extends AppCompatActivity {
         levelList.add(lvl5);
         levelList.add(lvl6);
 
+        File folder = getFilesDir();
+        File[] files = folder.listFiles();
+
+        int positionTracker = 5;
+
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile() && file.getName().startsWith("custom_level_") && file.getName().endsWith(".json")) {
+                    try {
+                        FileInputStream fis = new FileInputStream(file);
+                        List<com.explosiverodent.academo.model.Question> questions = JsonReader.loadQuestionsFromStream(this, fis);
+
+                        String rawName = file.getName();
+                        String cleanTitle = rawName.replace("custom_level_", "");
+                        if (cleanTitle.contains("_")) {
+                            cleanTitle = cleanTitle.substring(0, cleanTitle.lastIndexOf("_")).replace("_", " ");
+                        } else {
+                            cleanTitle = cleanTitle.replace(".json", "");
+                        }
+                        String customTitle = cleanTitle.toUpperCase();
+
+                        Level customLvl = new Level(positionTracker, customTitle, "Medium", 0);
+                        customLvl.setQuestionsCount(questions.size());
+
+                        customPathsMap.put(positionTracker, file.getAbsolutePath());
+
+                        levelList.add(customLvl);
+                        positionTracker++;
+
+                    } catch (Exception e) {
+                        android.util.Log.e("LOAD_CUSTOM_LEVEL", "Error reading file " + file.getName(), e);
+                    }
+                }
+            }
+        }
+
         for (Level level : levelList) {
             userDatabase.loadLevelStats(userId, level);
         }
@@ -188,10 +244,107 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra("LEVEL_TITLE", level.getTitle());
                     intent.putExtra("LEVEL_POSITION", level.getPosition());
                     intent.putExtra("LEVEL_DIFFICULTY", level.getDifficulty());
+
+                    if (level.getRawResourceId() == 0) {
+                        String realPath = customPathsMap.get(level.getPosition());
+                        intent.putExtra("LEVEL_CUSTOM_URI", realPath);
+                    }
+
                     startActivity(intent);
+                },
+                level -> {
+                    if (level.getRawResourceId() == 0) {
+                        new AlertDialog.Builder(HomeActivity.this)
+                                .setTitle("Delete Custom Level")
+                                .setMessage("Are you sure you want to delete \"" + level.getTitle() + "\"?")
+                                .setPositiveButton("Delete", (dialog, which) -> {
+                                    String filePath = customPathsMap.get(level.getPosition());
+                                    if (filePath != null) {
+                                        File fileToDelete = new File(filePath);
+                                        if (fileToDelete.exists() && fileToDelete.delete()) {
+                                            Toast.makeText(HomeActivity.this, "Level deleted successfully.", Toast.LENGTH_SHORT).show();
+                                            loadLevelsData();
+                                        } else {
+                                            Toast.makeText(HomeActivity.this, "Failed to delete the level file.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                })
+                                .setNegativeButton("Cancel", null)
+                                .show();
+                    }
                 }
         );
         recyclerViewLevels.setAdapter(levelAdapter);
+    }
+
+    private void processImportedLevel(Uri uri) {
+        android.os.ParcelFileDescriptor pfd = null;
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        try {
+            String originalName = "custom_level";
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    if (nameIndex != -1) {
+                        String fullName = cursor.getString(nameIndex);
+                        if (fullName.contains(".")) {
+                            originalName = fullName.substring(0, fullName.lastIndexOf("."));
+                        } else {
+                            originalName = fullName;
+                        }
+                    }
+                }
+                cursor.close();
+            }
+
+            pfd = getContentResolver().openFileDescriptor(uri, "r");
+            if (pfd == null) {
+                Toast.makeText(this, "Could not open selected file.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            fis = new FileInputStream(pfd.getFileDescriptor());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8));
+            StringBuilder jsonStringBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                jsonStringBuilder.append(line);
+            }
+
+            String rawJson = jsonStringBuilder.toString().trim();
+
+            org.json.JSONArray testArray = new org.json.JSONArray(rawJson);
+            if (testArray.length() == 0) {
+                Toast.makeText(this, "The JSON file does not contain any questions.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String cleanFileNameLabel = originalName.replaceAll("[^a-zA-Z0-9-_]", "_");
+            String fileName = "custom_level_" + cleanFileNameLabel + "_" + System.currentTimeMillis() + ".json";
+            File internalFile = new File(getFilesDir(), fileName);
+
+            fos = new FileOutputStream(internalFile);
+            fos.write(rawJson.getBytes(StandardCharsets.UTF_8));
+            fos.flush();
+
+            Toast.makeText(this, "Level imported successfully!", Toast.LENGTH_SHORT).show();
+            loadLevelsData();
+
+        } catch (org.json.JSONException je) {
+            android.util.Log.e("IMPORT_LEVEL", "Invalid JSON data structure", je);
+            Toast.makeText(this, "Invalid JSON format. Check keys and arrays.", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            android.util.Log.e("IMPORT_LEVEL", "Critical safe-stream copy failed", e);
+            Toast.makeText(this, "Error processing and saving the file.", Toast.LENGTH_SHORT).show();
+        } finally {
+            try {
+                if (fos != null) fos.close();
+                if (fis != null) fis.close();
+                if (pfd != null) pfd.close();
+            } catch (Exception ignored) {}
+        }
     }
 
     private void setupFilterMenu() {
