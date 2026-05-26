@@ -28,24 +28,27 @@
 
 ## 🛠️ Stack Tecnológica
 
-| Tecnologia | Descrição |
-|------------|-----------|
-| 🧠 **Java 17** | Android Native API |
-| 🗄️ **SQLite** | 3 tabelas relacionais |
-| 📱 **RecyclerView + CardView** | Renderização dinâmica |
-| 🎨 **Material Design Components** | Interface moderna |
-| ⏲️ **CountDownTimer + SharedPreferences** | Timer e persistência de sessão |
-| 📥 **JSON Parser** | Importação de níveis customizados |
-| 🖼️ **Image Handling** | URI + internal storage |
+| Tecnologia | Aplicação no Projeto |
+|------------|----------------------|
+| 🧠 **Java** | Desenvolvimento da lógica principal, Activities e sistema de progressão |
+| 🗄️ **SQLite** | Persistência local de usuários, autenticação e histórico de níveis |
+| 📱 **RecyclerView + CardView** | Renderização dinâmica e otimizada da lista de níveis |
+| 🎨 **Material Design Components** | Interface moderna seguindo padrões visuais do Android |
+| ⏲️ **CountDownTimer** | Controle de tempo e bônus por velocidade nas questões |
+| 💾 **SharedPreferences** | Persistência de sessão e preferências do usuário |
+| 📥 **JSON Parser** | Sistema data-driven para importação de níveis customizados |
+| 🖼️ **Image Handling + Internal Storage** | Armazenamento local e gerenciamento da foto de perfil |
+| 🧩 **XML Layouts** | Construção responsiva das interfaces do aplicativo |
+| 🔄 **Intents & Activity Navigation** | Navegação entre telas e transferência de dados |
 
 
 ### Estrutura do Banco de Dados
 
 | Tabela | Função |
 |--------|--------|
-| `users` | Dados do usuário (nome, pontos, XP, nível, foto) |
-| `auth` | Autenticação (password) com chave estrangeira |
-| `user_levels_history` | Histórico por nível (best score, rank, tentativas, data) |
+| `users` | Dados do usuário |
+| `auth` | Autenticação  com chave estrangeira |
+| `user_levels_history` | Histórico por nível |
 
 ---
 
@@ -118,12 +121,12 @@ O Academo permite que professores ou usuários criem seus próprios níveis em f
 
 ### Pré-requisitos
 - Android Studio Hedgehog ou superior
-- JDK 11+
+- JDK 17+
 - Dispositivo ou emulador Android (API 24+)
 
 ### Passos
 ```bash
-git clone https://github.com/seu-usuario/academo.git
+git clone https://github.com/RMD663/Academo.git
 ```
 
 Abra o projeto no Android Studio e clique em Run.
@@ -132,7 +135,7 @@ Abra o projeto no Android Studio e clique em Run.
 
 | Nome | Papel |
 |------|-------|
-| **Ryan Damasceno** | Desenvolvimento Mobile, Arquitetura, SQLite,  Game Design |
+| **Ryan Damasceno** | Desenvolvimento Mobile, Arquitetura, SQLite, Game Design |
 | **Wesley Silva** | JSON Structure, UI/UX |
 
 ### 📄 [Licença](LICENSE)
