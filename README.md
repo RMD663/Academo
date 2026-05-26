@@ -135,5 +135,5 @@ Abra o projeto no Android Studio e clique em Run.
 | **Ryan Damasceno** | Desenvolvimento Mobile, Arquitetura, SQLite,  Game Design |
 | **Wesley Silva** | JSON Structure, UI/UX |
 
-### 📄 Licença
+### 📄 [Licença](LICENSE)
 Este projeto está sob a licença GPL v3. Consulte o arquivo LICENSE para mais informações.
