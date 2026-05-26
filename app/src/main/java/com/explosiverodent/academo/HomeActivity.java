@@ -365,9 +365,14 @@ public class HomeActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case 1:
                         Collections.sort(levelList, (l1, l2) -> {
-                            String r1 = l1.getMaxRank().isEmpty() ? "Z" : l1.getMaxRank();
-                            String r2 = l2.getMaxRank().isEmpty() ? "Z" : l2.getMaxRank();
-                            return r1.compareTo(r2);
+                            int p1 = getRankWeight(l1.getMaxRank());
+                            int p2 = getRankWeight(l2.getMaxRank());
+
+                            if (p1 == p2) {
+                                return l1.getMaxRank().compareToIgnoreCase(l2.getMaxRank());
+                            }
+
+                            return Integer.compare(p1, p2);
                         });
                         break;
 
@@ -395,7 +400,25 @@ public class HomeActivity extends AppCompatActivity {
             popup.show();
         });
     }
+    private int getRankWeight(String rank) {
+        if (rank == null || rank.trim().isEmpty()) {
+            return 99;
+        }
 
+        String r = rank.trim().toUpperCase();
+
+        switch (r) {
+            case "SS": return 1;
+            case "S":  return 2;
+            case "A":  return 3;
+            case "B":  return 4;
+            case "C":  return 5;
+            case "D":  return 6;
+            case "E":  return 7;
+            case "F":  return 8;
+            default:   return 50;
+        }
+    }
     private int getDifficultyWeight(String difficulty) {
         if (difficulty == null) return 0;
         switch (difficulty.trim().toLowerCase()) {
