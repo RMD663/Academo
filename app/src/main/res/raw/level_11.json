@@ -1,0 +1,45 @@
+[
+  {
+    "text": "Em arquiteturas pipeline, qual o nome do problema causado por instruções que dependem do resultado de instruções anteriores ainda não finalizadas?",
+    "type": "text_input",
+    "correctAnswer": "Hazard de dados"
+  },
+  {
+    "text": "O mapeamento associativo por conjunto (set-associative) reduz os conflitos de cache comparado ao mapeamento direto.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual técnica de paralelismo de nível de instrução (ILP) permite a execução de múltiplas instruções por ciclo de clock?",
+    "type": "multiple_choice",
+    "options": ["Pipeline", "Superescalar", "Multithreading", "Sincronização"],
+    "correctAnswer": "Superescalar"
+  },
+  {
+    "text": "O protocolo de coerência de cache 'MESI' define quatro estados. Qual deles indica que o dado é exclusivo e foi modificado na cache local?",
+    "type": "text_input",
+    "correctAnswer": "Modified"
+  },
+  {
+    "text": "A Lei de Amdahl afirma que o ganho de velocidade de um sistema é limitado pela sua parte paralelizável.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual é a principal função da Unidade de Controle no ciclo de instrução?",
+    "type": "multiple_choice",
+    "options": ["Executar cálculos lógicos", "Decodificar instruções e gerar sinais de controle", "Armazenar dados temporários", "Controlar o barramento de entrada"],
+    "correctAnswer": "Decodificar instruções e gerar sinais de controle"
+  },
+  {
+    "text": "Em representação de ponto flutuante IEEE 754, o que compõe o formato de precisão simples?",
+    "type": "multiple_choice",
+    "options": ["1 bit sinal, 8 bits expoente, 23 bits mantissa", "1 bit sinal, 11 bits expoente, 52 bits mantissa", "8 bits sinal, 8 bits expoente, 16 bits mantissa", "1 bit sinal, 15 bits expoente, 16 bits mantissa"],
+    "correctAnswer": "1 bit sinal, 8 bits expoente, 23 bits mantissa"
+  },
+  {
+    "text": "A técnica de 'Branch Prediction' é utilizada para minimizar as penalidades de qual tipo de hazard?",
+    "type": "text_input",
+    "correctAnswer": "Hazard de controle"
+  }
+]

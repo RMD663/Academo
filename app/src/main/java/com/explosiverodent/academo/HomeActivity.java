@@ -49,6 +49,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView userNameText;
     private TextView levelText;
     private ProgressBar levelProgress;
+
+    private TextView textXP;
     private FloatingActionButton fabFilter;
     private FloatingActionButton fabImport;
     private RecyclerView recyclerViewLevels;
@@ -118,6 +120,7 @@ public class HomeActivity extends AppCompatActivity {
         levelProgress = findViewById(R.id.level_progress);
         fabFilter = findViewById(R.id.fab_filter);
         fabImport = findViewById(R.id.fab_import);
+        textXP = findViewById(R.id.xp_text);
 
         recyclerViewLevels = findViewById(R.id.level_select_list);
         recyclerViewLevels.setLayoutManager(new LinearLayoutManager(this));
@@ -156,6 +159,7 @@ public class HomeActivity extends AppCompatActivity {
                 int xpRequired = level * 100;
                 levelProgress.setMax(xpRequired);
                 levelProgress.setProgress((int) xp);
+                textXP.setText((int) xp + "/" + xpRequired + " XP");
 
                 if (currentPicUriString != null && !currentPicUriString.isEmpty()) {
                     try {

@@ -1,0 +1,45 @@
+[
+  {
+    "text": "Qual é o principal objetivo de uma Sprint no framework Scrum?",
+    "type": "multiple_choice",
+    "options": ["Documentar o projeto", "Entregar um incremento de valor", "Finalizar o projeto todo", "Treinar a equipe"],
+    "correctAnswer": "Entregar um incremento de valor"
+  },
+  {
+    "text": "No Kanban, o limite de WIP (Work In Progress) serve para evitar gargalos.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  },
+  {
+    "text": "Qual cerimônia do Scrum visa inspecionar o processo e buscar melhorias?",
+    "type": "text_input",
+    "correctAnswer": "Retrospectiva"
+  },
+  {
+    "text": "Qual é a função do Product Owner no Scrum?",
+    "type": "multiple_choice",
+    "options": ["Gerir a equipe", "Maximizar o valor do produto", "Aprovar orçamentos", "Escrever código"],
+    "correctAnswer": "Maximizar o valor do produto"
+  },
+  {
+    "text": "O 'Daily Scrum' deve ter duração máxima de 30 minutos.",
+    "type": "true_false",
+    "correctAnswer": "false"
+  },
+  {
+    "text": "Qual técnica ágil prioriza a entrega contínua sem ciclos fixos de tempo?",
+    "type": "text_input",
+    "correctAnswer": "Kanban"
+  },
+  {
+    "text": "O que define a 'Definition of Done' (DoD) em um time ágil?",
+    "type": "multiple_choice",
+    "options": ["Cronograma final", "Critérios de qualidade do incremento", "Lista de bugs", "Orçamento"],
+    "correctAnswer": "Critérios de qualidade do incremento"
+  },
+  {
+    "text": "Refatoração de código é uma prática essencial em métodos ágeis.",
+    "type": "true_false",
+    "correctAnswer": "true"
+  }
+]

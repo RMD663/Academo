@@ -12,7 +12,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/profile_bar"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="240dp"
         android:layout_alignParentTop="true"
         app:cardBackgroundColor="#172038"
         app:cardCornerRadius="0dp"
@@ -72,19 +72,39 @@
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/level_progress"
-                android:layout_width="180dp"
+            <LinearLayout
+                android:id="@+id/progress_container"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/level_text"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
-                android:max="200"
-                android:progress="45"
-                app:trackColor="#33FFFFFF"
-                app:indicatorColor="#468232"
-                app:trackCornerRadius="4dp"
-                app:trackThickness="6dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/level_progress"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:max="200"
+                    android:progress="45"
+                    app:trackColor="#1A000000"
+                    app:indicatorColor="#4CAF50"
+                    app:trackCornerRadius="8dp"
+                    app:trackThickness="8dp"
+                    app:showAnimationBehavior="outward"/>
+
+                <TextView
+                    android:id="@+id/xp_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="45/200"
+                    android:textColor="#EBEDE9"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium" />
+
+            </LinearLayout>
 
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
