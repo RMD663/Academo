@@ -179,15 +179,12 @@ public class HomeActivity extends AppCompatActivity {
 
         Level lvl1 = new Level(1, "FUNDAMENTOS DE SISTEMAS", "Easy", R.raw.level_1);
         Level lvl2 = new Level(2, "FUNDAMENTOS DE REDES", "Easy", R.raw.level_2);
-        Level lvl3 = new Level(3, "TÉCNICAS DE PROGRAMAÇÃO 1", "Medium", R.raw.level_3);
-        Level lvl4 = new Level(4, "TEORIA GERAL DA ADMINISTRAÇÃO", "Hard", R.raw.level_4);
-        Level lvl5 = new Level(5, "TÉCNICAS DE PROGRAMAÇÃO 2", "Medium", R.raw.level_5);
-        Level lvl6 = new Level(6, "BANCO DE DADOS", "Hard", R.raw.level_6);
-        Level lvl7 = new Level(7, "POO", "Easy", R.raw.level_7);
-        Level lvl8 = new Level(8, "GOVERNAÇA DE TI", "Medium", R.raw.level_8);
-        Level lvl9 = new Level(9, "MÉTODOS ÁGEIS", "Medium", R.raw.level_9);
-        Level lvl10 = new Level(10, "LÓGICA MATEMÁTICA COMPUTACIONAL", "Hard", R.raw.level_10);
-        Level lvl11 = new Level(11, "ARQUITETURA E ORGANIZAÇÃO DE COMPUTADORES", "Hard", R.raw.level_11);
+        Level lvl3 = new Level(3, "INTRODUÇÃO A TÉCNICAS DE PROGRAMAÇÃO 1", "Medium", R.raw.level_3);
+        Level lvl4 = new Level(4, "INTRODUÇÃO A TEORIA GERAL DA ADMINISTRAÇÃO", "Hard", R.raw.level_4);
+        Level lvl5 = new Level(5, "INTRODUÇÃO A BANCO DE DADOS", "Easy", R.raw.level_5);
+        Level lvl6 = new Level(6, "INTRODUÇÃO A CAMADAS DE REDES", "Easy", R.raw.level_6);
+        Level lvl7 = new Level(7, "INTRODUÇÃO A ENGENHARIA DE SOFTWARE", "Easy", R.raw.level_7);
+
 
         lvl1.setQuestionsCount(JsonReader.loadQuestions(this, lvl1.getRawResourceId()).size());
         lvl2.setQuestionsCount(JsonReader.loadQuestions(this, lvl2.getRawResourceId()).size());
@@ -196,11 +193,6 @@ public class HomeActivity extends AppCompatActivity {
         lvl5.setQuestionsCount(JsonReader.loadQuestions(this, lvl5.getRawResourceId()).size());
         lvl6.setQuestionsCount(JsonReader.loadQuestions(this, lvl6.getRawResourceId()).size());
         lvl7.setQuestionsCount(JsonReader.loadQuestions(this, lvl7.getRawResourceId()).size());
-        lvl8.setQuestionsCount(JsonReader.loadQuestions(this, lvl8.getRawResourceId()).size());
-        lvl9.setQuestionsCount(JsonReader.loadQuestions(this, lvl9.getRawResourceId()).size());
-        lvl10.setQuestionsCount(JsonReader.loadQuestions(this, lvl10.getRawResourceId()).size());
-        lvl11.setQuestionsCount(JsonReader.loadQuestions(this, lvl1.getRawResourceId()).size());
-
 
         levelList.add(lvl1);
         levelList.add(lvl2);
@@ -209,10 +201,7 @@ public class HomeActivity extends AppCompatActivity {
         levelList.add(lvl5);
         levelList.add(lvl6);
         levelList.add(lvl7);
-        levelList.add(lvl8);
-        levelList.add(lvl9);
-        levelList.add(lvl10);
-        levelList.add(lvl11);
+
 
         File folder = getFilesDir();
         File[] files = folder.listFiles();
@@ -380,9 +369,14 @@ public class HomeActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case 1:
                         Collections.sort(levelList, (l1, l2) -> {
-                            String r1 = l1.getMaxRank().isEmpty() ? "Z" : l1.getMaxRank();
-                            String r2 = l2.getMaxRank().isEmpty() ? "Z" : l2.getMaxRank();
-                            return r1.compareTo(r2);
+                            int p1 = getRankWeight(l1.getMaxRank());
+                            int p2 = getRankWeight(l2.getMaxRank());
+
+                            if (p1 == p2) {
+                                return l1.getMaxRank().compareToIgnoreCase(l2.getMaxRank());
+                            }
+
+                            return Integer.compare(p1, p2);
                         });
                         break;
 
@@ -410,7 +404,25 @@ public class HomeActivity extends AppCompatActivity {
             popup.show();
         });
     }
+    private int getRankWeight(String rank) {
+        if (rank == null || rank.trim().isEmpty()) {
+            return 99;
+        }
 
+        String r = rank.trim().toUpperCase();
+
+        switch (r) {
+            case "SS": return 1;
+            case "S":  return 2;
+            case "A":  return 3;
+            case "B":  return 4;
+            case "C":  return 5;
+            case "D":  return 6;
+            case "E":  return 7;
+            case "F":  return 8;
+            default:   return 50;
+        }
+    }
     private int getDifficultyWeight(String difficulty) {
         if (difficulty == null) return 0;
         switch (difficulty.trim().toLowerCase()) {

@@ -7,112 +7,124 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     android:gravity="center"
     android:padding="24dp"
     tools:context=".EditProfileActivity">
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="400dp"
-      android:orientation="vertical"
-      android:gravity="center_horizontal">
-
-    <TextView
-        android:id="@+id/edit_profile_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="EDIT PROFILE"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif-condensed"
-        android:letterSpacing="0.05"
-        android:textColor="#212121" />
-
-    <FrameLayout
-        android:id="@+id/profile_image_container"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="48dp">
-
-      <ImageView
-          android:id="@+id/edit_profile_picture"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:scaleType="centerCrop"
-          android:background="#E0E0E0"
-          android:src="@drawable/profile_picture" />
-
-      <View
-          android:layout_width="40dp"
-          android:layout_height="40dp"
-          android:layout_gravity="bottom|end"
-          android:background="#172038"
-          android:alpha="0.8"/>
-
-      <ImageView
-          android:layout_width="24dp"
-          android:layout_height="24dp"
-          android:layout_gravity="bottom|end"
-          android:layout_margin="8dp"
-          android:src="@android:drawable/ic_menu_camera"
-          app:tint="#FFFFFF" />
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/edit_username_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="USERNAME"
-        android:textSize="12sp"
-        android:letterSpacing="0.1"
-        android:textColor="#757575" />
-
-    <TextView
-        android:id="@+id/edit_username_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Player Name"
-        android:textSize="20sp"
-        android:textColor="#000000" />
-
-  </LinearLayout>
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      android:gravity="center_horizontal"
-      android:padding="20dp">
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_save_profile"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:layout_marginBottom="16dp"
-        app:cornerRadius="10dp"
-        android:fontFamily="monospace"
-        android:text="SAVE CHANGES"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_cancel_profile"
+        <TextView
+            android:id="@+id/edit_profile_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="EDIT PROFILE"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"
+            android:letterSpacing="0.05"
+            android:textColor="#212121" />
+
+        <FrameLayout
+            android:id="@+id/profile_image_container"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="48dp">
+
+            <ImageView
+                android:id="@+id/edit_profile_picture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="#E0E0E0"
+                android:src="@drawable/profile_picture" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|end"
+                android:background="#172038"
+                android:alpha="0.8"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="8dp"
+                android:src="@android:drawable/ic_menu_camera"
+                app:tint="#FFFFFF" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/edit_username_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="USERNAME"
+            android:textSize="12sp"
+            android:letterSpacing="0.1"
+            android:textColor="#757575" />
+
+        <TextView
+            android:id="@+id/edit_username_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Player Name"
+            android:textSize="20sp"
+            android:textColor="#000000" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        app:cornerRadius="10dp"
-        android:fontFamily="monospace"
-        android:text="CANCEL"
-        android:textColor="#757575"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp">
 
-  </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save_profile"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginBottom="16dp"
+            app:cornerRadius="10dp"
+            android:fontFamily="monospace"
+            android:text="SAVE CHANGES"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_exit"
+            android:layout_width="220dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/square_button_selector"
+            android:fontFamily="monospace"
+            android:text="EXIT"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel_profile"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="8dp"
+            app:cornerRadius="10dp"
+            android:fontFamily="monospace"
+            android:text="CANCEL"
+            android:textColor="#757575"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </LinearLayout>

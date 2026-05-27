@@ -1,46 +1,57 @@
 [
   {
-    "text": "Qual fenômeno ocorre em 'Read Committed' mas não em 'Repeatable Read'?",
+    "text": "Qual camada do modelo OSI é responsável pelo envio físico dos bits através de cabos ou ondas de rádio?",
     "type": "multiple_choice",
-    "options": ["Dirty Read", "Non-repeatable Read", "Lost Update", "Phantom Read"],
-    "correctAnswer": "Non-repeatable Read"
+    "options": [
+      "Camada Física",
+      "Camada de Aplicação",
+      "Camada de Transporte",
+      "Camada de Rede"
+    ],
+    "correctAnswer": "Camada Física"
   },
   {
-    "text": "O que faz a cláusula 'DEFERRED' em restrições de integridade?",
+    "text": "O protocolo HTTP, utilizado para navegar na web, opera em qual camada da rede?",
     "type": "multiple_choice",
-    "options": ["Verifica ao fim da transação", "Ignora a restrição", "Aplica em SELECTs", "Trava a tabela"],
-    "correctAnswer": "Verifica ao fim da transação"
+    "options": [
+      "Enlace",
+      "Aplicação",
+      "Rede",
+      "Física"
+    ],
+    "correctAnswer": "Aplicação"
   },
   {
-    "text": "Índices B-Tree garantem tempo de busca constante O(1) para qualquer dado.",
-    "type": "true_false",
-    "correctAnswer": "false"
-  },
-  {
-    "text": "Qual comando reverte alterações até um ponto específico da transação?",
-    "type": "text_input",
-    "correctAnswer": "ROLLBACK TO SAVEPOINT"
-  },
-  {
-    "text": "O que diferencia um 'Clustered Index'?",
+    "text": "Qual é a principal função da Camada de Rede no modelo OSI?",
     "type": "multiple_choice",
-    "options": ["Ordena dados fisicamente", "Não permite chaves únicas", "É para tabelas pequenas", "Não tem diferença"],
-    "correctAnswer": "Ordena dados fisicamente"
+    "options": [
+      "Exibir a interface gráfica para o usuário",
+      "Garantir que os cabos estejam conectados",
+      "Roteamento de pacotes e endereçamento IP",
+      "Criptografar senhas do navegador"
+    ],
+    "correctAnswer": "Roteamento de pacotes e endereçamento IP"
   },
   {
-    "text": "O teorema CAP permite garantir Consistência, Disponibilidade e Tolerância simultaneamente.",
-    "type": "true_false",
-    "correctAnswer": "false"
-  },
-  {
-    "text": "Qual técnica pré-calcula e armazena resultados de consultas complexas?",
-    "type": "text_input",
-    "correctAnswer": "Materialized View"
-  },
-  {
-    "text": "Qual o requisito da 3NF em relação a dependências?",
+    "text": "Protocolos como TCP e UDP são fundamentais e pertencem a qual camada?",
     "type": "multiple_choice",
-    "options": ["Sem dependências transitivas", "Sem colunas multivaloradas", "Chave única", "Sem redundância"],
-    "correctAnswer": "Sem dependências transitivas"
+    "options": [
+      "Física",
+      "Transporte",
+      "Aplicação",
+      "Enlace"
+    ],
+    "correctAnswer": "Transporte"
+  },
+  {
+    "text": "O endereço MAC é utilizado para identificar dispositivos localmente em qual camada?",
+    "type": "multiple_choice",
+    "options": [
+      "Camada de Enlace",
+      "Camada de Transporte",
+      "Camada de Sessão",
+      "Camada de Apresentação"
+    ],
+    "correctAnswer": "Camada de Enlace"
   }
 ]
